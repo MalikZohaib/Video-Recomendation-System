@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/video-recomendation-system_3939.iml" filepath="$PROJECT_DIR$/.idea/modules/video-recomendation-system_3939.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/video-recomendation-system_3939-build.iml" filepath="$PROJECT_DIR$/.idea/modules/video-recomendation-system_3939-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Intelligent Video Recomendation System.iml" filepath="$PROJECT_DIR$/.idea/modules/Intelligent Video Recomendation System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Intelligent Video Recomendation System-build.iml" filepath="$PROJECT_DIR$/.idea/modules/Intelligent Video Recomendation System-build.iml" />
     </modules>
   </component>
 </project>
