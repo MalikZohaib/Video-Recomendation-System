@@ -1,11 +1,11 @@
 import org.apache.spark
-import org.apache.spark.ml.clustering.KMeans
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.mllib.recommendation.ALS
 import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
 import org.apache.spark.mllib.recommendation.Rating
-import org.apache.spark.broadcast
+import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
+import org.apache.spark.mllib.linalg
+import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.{Row, SparkSession}
 
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
@@ -42,17 +42,62 @@ object Recomendation {
       val ratingTuples = ratings.map(showRating)
 
     val brodcastRatings = spark.sparkContext.broadcast(ratingTuples.collect())
+//    val test =  ratingTuples.map(r => {
+//      val vector = Vectors.dense(r._1, r._2,r._3)
+//      vector : linalg.Vector
+//    })
 
-//    ratings.map{rating =>
+    //    ratings.map{rating =>
 ////      print(rating(0))
 //      Tuple3(rating(0),rating(1),rating(2))
 //    }
 //    ratingTuples.collect()
     val movies = ratingTuples.map(_._2).distinct().sort($"value").cache()
     for (mov <- movies.collect()){
-      val users = ratingTuples.collect().filter(rat => rat._2.equals(mov))
+      val ratingsCalllected = ratingTuples.collect()
+      val users = ratingsCalllected.filter(rat => rat._2.equals(mov))
+      val usersRdds = spark.sparkContext.parallelize(users)
+//      val userRating = usersRdds.filter(rat => rat._2.equals(mov))
+//      println(userRating.count())
+      for (user <- usersRdds){
+        val userMovies = ratingsCalllected.filter(rat => rat._1.equals(user._1))
+        var userRat = userMovies.filter(rat => rat._2.equals(mov)).take(1)
+        var currentUserRating = (0, 0, 0F)
+        for (rat <- userRat){
+          currentUserRating = rat
+        }
+        val consimeSimilaritiy = userMovies.map( rat => {
+          if(!rat._1.equals(currentUserRating._1)){
+            
+          }
+        })
+
+      }
+//      var userRat = 0.0
+//      val userRat = usersRdds.map(user => {
+//        //calculate cosine similarity
+//        if(user._2 == mov)
+//          userRat = user._3
+//        else
+//
+//        // if(user._2 != userRating.)
+//        val cosineSimilartity = (user._3)
+//      })
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    ratingTuples.show()
 //    ratingTuples.collect()
 //    val movIds = movies.map( mov => {

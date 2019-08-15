@@ -4,7 +4,7 @@
 		module="video-recomendation-system$sources"
 		revision="0.1"
 		status="integration"
-		publication="20190810000515"
+		publication="20190815124902"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
