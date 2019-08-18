@@ -1,0 +1,69 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/video-recomendation-system_2.11-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$6.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$6.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$typecreator5$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$typecreator5$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$9.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$9.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$typecreator5$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$typecreator5$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$7.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$7.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	A$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/A$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	A.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/A.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$main$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$main$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Helper.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Helper.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$4.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$5.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$apply$mcVI$sp$5.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$apply$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$apply$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	kmeans$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/kmeans$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$8.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1$$anonfun$8.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$5.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/classes/Recomendation$$anonfun$main$1$$anonfun$apply$mcVI$sp$2$$anonfun$5.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

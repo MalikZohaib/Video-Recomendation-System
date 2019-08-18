@@ -1,3 +1,5 @@
+import java.util.Optional
+
 import org.apache.spark
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -34,7 +36,7 @@ object Recomendation {
 
     import spark.implicits._
 
-    val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
+    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
       .map(parseRating)
       .toDF().cache()
     ratings.createOrReplaceTempView("ratings")
@@ -42,55 +44,68 @@ object Recomendation {
       val ratingTuples = ratings.map(showRating)
 
     val brodcastRatings = spark.sparkContext.broadcast(ratingTuples.collect())
-//    val test =  ratingTuples.map(r => {
-//      val vector = Vectors.dense(r._1, r._2,r._3)
-//      vector : linalg.Vector
-//    })
 
-    //    ratings.map{rating =>
-////      print(rating(0))
-//      Tuple3(rating(0),rating(1),rating(2))
-//    }
-//    ratingTuples.collect()
     val movies = ratingTuples.map(_._2).distinct().sort($"value").cache()
-    for (mov <- movies.collect()){
+    var moviesDiff = ArrayBuffer[(Int,Array[(Int, Int, Double)])]()
+    val moviesColl = movies.collect()
+    for (mov <- moviesColl){
       val ratingsCalllected = ratingTuples.collect()
-      val users = ratingsCalllected.filter(rat => rat._2.equals(mov))
-      val usersRdds = spark.sparkContext.parallelize(users)
-//      val userRating = usersRdds.filter(rat => rat._2.equals(mov))
-//      println(userRating.count())
-      for (user <- usersRdds){
-        val userMovies = ratingsCalllected.filter(rat => rat._1.equals(user._1))
+      val users = ratingTuples.filter(rat => rat._2.equals(mov))
+
+      for (user <- users.collect()){
+        val userMovies = ratingTuples.filter(rat => rat._1.equals(user._1))
         var userRat = userMovies.filter(rat => rat._2.equals(mov)).take(1)
         var currentUserRating = (0, 0, 0F)
         for (rat <- userRat){
           currentUserRating = rat
         }
-        val consimeSimilaritiy = userMovies.map( rat => {
-          if(!rat._1.equals(currentUserRating._1)){
-            
+//        println(currentUserRating)
+        val similarMovies = userMovies.rdd.map( rat => {
+          var diff : (Int, Int, Double) = null
+          if(!rat._2.equals(currentUserRating._2)){
+            diff = (rat._1,rat._2,math.pow(currentUserRating._3-rat._3,2))
+//            diff : (Int, Int, Float)
           }
+          if(diff != null)
+            diff : (Int, Int, Double)
+          else
+            null
         })
-
+        moviesDiff.append((currentUserRating._2,similarMovies.collect()))
       }
-//      var userRat = 0.0
-//      val userRat = usersRdds.map(user => {
-//        //calculate cosine similarity
-//        if(user._2 == mov)
-//          userRat = user._3
-//        else
-//
-//        // if(user._2 != userRating.)
-//        val cosineSimilartity = (user._3)
-//      })
 
     }
 
+    val moviesDiffRdds = spark.sparkContext.parallelize(moviesDiff)
+    println("movies size: "+moviesDiffRdds.count())
+    println("out of big loop")
+    val equiDistanceValues = ArrayBuffer[Array[(Int,Int,Double)]]()
+    moviesColl.foreach(movId => {
+      val movieIdDiffs = moviesDiffRdds.filter(movRat => movRat._1.equals(movId))
+      var combinedMovies = ArrayBuffer[(Int,Int,Double)]()
+      for(mov <- movieIdDiffs.collect()){
+        for( mo <- mov._2){
+          if(mo != null) {
+            val prev = combinedMovies.filter(_._2.equals(mo._2)).take(1)
+            var position = -1
+            if(prev.nonEmpty){
+              position = combinedMovies.indexOf(prev(0))
+            }
+            if(position != -1){
+              val previousDiff = combinedMovies.remove(position)
+              combinedMovies.prepend((movId,previousDiff._2,previousDiff._3+mo._3))
+            }else{
+              combinedMovies.prepend((movId,mo._2, mo._3))
+            }
+          }
+        }
+      }
+//      combinedMovies.foreach(println)
+      val combinedMoviesRdds = spark.sparkContext.parallelize(combinedMovies)
+      equiDistanceValues.prepend(combinedMoviesRdds.map(rating => (rating._1,rating._2,Math.sqrt(rating._3))).collect())
+    })
 
-
-
-
-
+    
 
 
 
