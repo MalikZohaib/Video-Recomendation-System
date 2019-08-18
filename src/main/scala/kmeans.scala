@@ -25,6 +25,7 @@ object kmeans {
 
   def main(args: Array[String]): Unit = {
 
+//        moviesDiff.insert(currentUserRating._2,similarMovies.collect())
     //spark session
     val spark = SparkSession
       .builder
@@ -56,11 +57,6 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
 
     vector : linalg.Vector
  })
-
-//    val scaledDataOnly_rdd = test.map{x:Row => x.getAs[linalg.Vector](0)}(ExpressionEncoder(): Encoder[linalg.Vector])
-//    test.show(100)
-//    test.show(100)
-
 
     // Cluster the data into two classes using KMeans
     val numClusters = 10

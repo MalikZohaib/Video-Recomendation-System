@@ -1,5 +1,6 @@
 import java.util.Optional
 
+import breeze.linalg.min
 import org.apache.spark
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -105,11 +106,47 @@ object Recomendation {
       equiDistanceValues.prepend(combinedMoviesRdds.map(rating => (rating._1,rating._2,Math.sqrt(rating._3))).collect())
     })
 
-    
+    val firstMovies = moviesColl(0)
+    val equiDistanceValuesRdds = spark.sparkContext.parallelize(equiDistanceValues)
+    val firstMovieBrodcasted = spark.sparkContext.broadcast(firstMovies)
+    val firstMoviesDistanceRdds = equiDistanceValuesRdds.map(mov => {
+        var currentDistance : (Int, Int, Double) = null
+        for (m <- mov){
+          if(m._1.equals(firstMovieBrodcasted.value) || m._2.equals(firstMovieBrodcasted.value))
+            if(currentDistance == null){
+              currentDistance = m
+            }else{
+              if(m._3 < currentDistance._3)
+                currentDistance = m
+            }
+        }
+        currentDistance
+    })
+    val firstrating = firstMoviesDistanceRdds.cache().collect()(0)
+    val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
+    liknessCombinations.append(firstrating)
+    var count = 0
+    while (count < liknessCombinations.size){
+      val currentRating = liknessCombinations(count)
+      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
+      val allEquiDistRatings = firstMoviesDistanceRdds.filter(mov => mov._2.equals(currentRatingBrodCasted.value._2) || mov._1.equals(currentRatingBrodCasted.value._2))
+      if(allEquiDistRatings.count() > 0){
+        val finalDistance = allEquiDistRatings.reduce((x, y) => if(x._3 < y._3) x else y)
+        println(finalDistance)
+      }
+      count +=1
+//      println(allEquiDistRatings)
 
+      //      if(allEquiDistRatings.count() > 0){
+//        var minDistanceBrodcasted = spark.sparkContext.broadcast(allEquiDistRatings.take(1)(0))
+//
+//        allEquiDistRatings.map(distance => {
+//          if(distance._3 < minDistanceBrodcasted.value._3)
+//
+//        })
+//      }
 
-
-
+    }
 
 
 
