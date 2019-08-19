@@ -21428,47 +21428,44 @@
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
 [debug] 	[NOT REQUIRED] commons-collections#commons-collections;3.2.2!commons-collections.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-core;2.6.5!hadoop-mapreduce-client-core.jar(src)
-[debug] 	[NOT REQUIRED] com.fasterxml.jackson.module#jackson-module-scala_2.11;2.6.7.1!jackson-module-scala_2.11.jar(src)
-[debug] 	[NOT REQUIRED] net.razorvine#pyrolite;4.13!pyrolite.jar(src)
 [debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
 [debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-graphite;3.1.5!metrics-graphite.jar(src)
 [debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-core;2.6.5!hadoop-mapreduce-client-core.jar(src)
+[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
+[debug] 	[NOT REQUIRED] com.fasterxml.jackson.module#jackson-module-scala_2.11;2.6.7.1!jackson-module-scala_2.11.jar(src)
+[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
+[debug] 	[NOT REQUIRED] net.razorvine#pyrolite;4.13!pyrolite.jar(src)
+[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] 	[NOT REQUIRED] com.thoughtworks.paranamer#paranamer;2.8!paranamer.jar(src)
-[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
-[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
-[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
-[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
 [debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] no default ivy user dir defined: set to /home/zohaib/.ivy2
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (89ms)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] settings loaded (44ms)
 [debug] 	default cache: /home/zohaib/.ivy2/cache
 [debug] 	default resolver: default
 [debug] 	-- 5 resolvers:
@@ -21481,86 +21478,81 @@
 [debug] 	[NOT REQUIRED] org.apache.directory.server#apacheds-i18n;2.0.0-M15!apacheds-i18n.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.jackson#jackson-core-asl;1.9.13!jackson-core-asl.jar(src)
 [debug] 	[NOT REQUIRED] org.json4s#json4s-core_2.11;3.5.3!json4s-core_2.11.jar(src)
-[debug] 	[NOT REQUIRED] oro#oro;2.0.8!oro.jar(src)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] settings loaded (55ms)
+[debug] 	default cache: /home/zohaib/.ivy2/cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
 [debug] 	[NOT REQUIRED] org.json4s#json4s-ast_2.11;3.5.3!json4s-ast_2.11.jar(src)
+[debug] settings loaded (60ms)
+[debug] 	default cache: /home/zohaib/.ivy2/cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
 [debug] 	[NOT REQUIRED] org.apache.avro#avro;1.8.2!avro.jar(src)
-[debug] settings loaded (88ms)
-[debug] 	default cache: /home/zohaib/.ivy2/cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (96ms)
-[debug] 	default cache: /home/zohaib/.ivy2/cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
-[debug] 	[NOT REQUIRED] org.apache.orc#orc-mapreduce;1.5.5!orc-mapreduce.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.jersey.containers#jersey-container-servlet;2.22.2!jersey-container-servlet.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-mllib_2.11;2.4.3!spark-mllib_2.11.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.orc#orc-shims;1.5.5!orc-shims.jar(src)
-[debug] settings loaded (92ms)
-[debug] 	default cache: /home/zohaib/.ivy2/cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
+[debug] 	[NOT REQUIRED] org.apache.orc#orc-mapreduce;1.5.5!orc-mapreduce.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.janino#commons-compiler;3.0.9!commons-compiler.jar(src)
 [debug] 	[NOT REQUIRED] org.json4s#json4s-jackson_2.11;3.5.3!json4s-jackson_2.11.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-tags_2.11;2.4.3!spark-tags_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-auth;2.6.5!hadoop-auth.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.parquet#parquet-encoding;1.10.1!parquet-encoding.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.directory.api#api-asn1-api;1.0.0-M20!api-asn1-api.jar(src)
-[debug] 	[NOT REQUIRED] net.sf.py4j#py4j;0.10.7!py4j.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.jackson#jackson-jaxrs;1.9.13!jackson-jaxrs.jar(src)
+[debug] 	[NOT REQUIRED] net.sf.py4j#py4j;0.10.7!py4j.jar(src)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
 [debug] 	[NOT REQUIRED] org.codehaus.janino#janino;3.0.9!janino.jar(src)
 [debug] 	[NOT REQUIRED] commons-beanutils#commons-beanutils;1.7.0!commons-beanutils.jar(src)
+[debug] no default cache defined: set to /home/zohaib/.ivy2/cache
 [debug] 	[NOT REQUIRED] org.tukaani#xz;1.5!xz.jar(src)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
 [debug] 	[NOT REQUIRED] org.apache.avro#avro-ipc;1.8.2!avro-ipc.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-kvstore_2.11;2.4.3!spark-kvstore_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-hdfs;2.6.5!hadoop-hdfs.jar(src)
-[debug] 	[NOT REQUIRED] commons-lang#commons-lang;2.6!commons-lang.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.curator#curator-framework;2.6.0!curator-framework.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-mllib_2.11;2.4.3!spark-mllib_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-catalyst_2.11;2.4.3!spark-catalyst_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.jersey.containers#jersey-container-servlet;2.22.2!jersey-container-servlet.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-core_2.11;2.4.3!spark-core_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.objenesis#objenesis;2.5.1!objenesis.jar(src)
-[debug] 	[NOT REQUIRED] net.sf.opencsv#opencsv;2.3!opencsv.jar(src)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] 	[NOT REQUIRED] org.scalanlp#breeze_2.11;0.13.2!breeze_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.typelevel#machinist_2.11;0.6.1!machinist_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.commons#commons-lang3;3.5!commons-lang3.jar(src)
-[debug] 	[NOT REQUIRED] org.fusesource.leveldbjni#leveldbjni-all;1.8!leveldbjni-all.jar(src)
-[debug] 	[NOT REQUIRED] org.javassist#javassist;3.18.1-GA!javassist.jar(src)
-[debug] settings loaded (100ms)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] settings loaded (64ms)
 [debug] 	default cache: /home/zohaib/.ivy2/cache
 [debug] 	default resolver: default
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.1.0!scala-parser-combinators_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.commons#commons-compress;1.8.1!commons-compress.jar(src)
 [debug] 	-- 5 resolvers:
-[debug] 	[NOT REQUIRED] com.esotericsoftware#kryo-shaded;4.0.2!kryo-shaded.jar(src)
 [debug] 	shared [file]
 [debug] 	default [chain] [local, main]
 [debug] 	public [ibiblio]
 [debug] 	main [chain] [shared, public]
 [debug] 	local [file]
-[debug] 	[NOT REQUIRED] com.google.code.findbugs#jsr305;3.0.2!jsr305.jar(src)
+[debug] 	[NOT REQUIRED] commons-lang#commons-lang;2.6!commons-lang.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-hdfs;2.6.5!hadoop-hdfs.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.1.0!scala-parser-combinators_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.curator#curator-framework;2.6.0!curator-framework.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-catalyst_2.11;2.4.3!spark-catalyst_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.objenesis#objenesis;2.5.1!objenesis.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-core_2.11;2.4.3!spark-core_2.11.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.httpcomponents#httpcore;4.2.4!httpcore.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-common;2.6.5!hadoop-mapreduce-client-common.jar(src)
+[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] 	[NOT REQUIRED] net.sf.opencsv#opencsv;2.3!opencsv.jar(src)
+[debug] 	[NOT REQUIRED] org.scalanlp#breeze_2.11;0.13.2!breeze_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.typelevel#machinist_2.11;0.6.1!machinist_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.commons#commons-lang3;3.5!commons-lang3.jar(src)
+[debug] 	[NOT REQUIRED] com.esotericsoftware#kryo-shaded;4.0.2!kryo-shaded.jar(src)
+[debug] 	[NOT REQUIRED] org.fusesource.leveldbjni#leveldbjni-all;1.8!leveldbjni-all.jar(src)
+[debug] 	[NOT REQUIRED] org.javassist#javassist;3.18.1-GA!javassist.jar(src)
+[debug] 	[NOT REQUIRED] com.google.protobuf#protobuf-java;2.5.0!protobuf-java.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-auth;2.6.5!hadoop-auth.jar(src)
+[debug] 	[NOT REQUIRED] com.google.code.findbugs#jsr305;3.0.2!jsr305.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-format;0.10.0!arrow-format.jar(src)
 [debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-jvm;3.1.5!metrics-jvm.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-common;2.6.5!hadoop-mapreduce-client-common.jar(src)
 [debug] 	[NOT REQUIRED] com.fasterxml.jackson.core#jackson-core;2.7.9!jackson-core.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.jackson#jackson-mapper-asl;1.9.13!jackson-mapper-asl.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-launcher_2.11;2.4.3!spark-launcher_2.11.jar(src)
@@ -21572,70 +21564,8 @@
 [debug] 	[NOT REQUIRED] org.apache.curator#curator-client;2.6.0!curator-client.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.11;1.0.6!scala-xml_2.11.jar(src)
 [debug] 	[NOT REQUIRED] org.glassfish.hk2#hk2-api;2.4.0-b34!hk2-api.jar(src)
-[debug] 	[NOT REQUIRED] javax.ws.rs#javax.ws.rs-api;2.0.1!javax.ws.rs-api.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-app;2.6.5!hadoop-mapreduce-client-app.jar(src)
-[debug] 	[NOT REQUIRED] log4j#log4j;1.2.17!log4j.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.httpcomponents#httpclient;4.2.5!httpclient.jar(src)
-[debug] 	[NOT REQUIRED] org.antlr#antlr4-runtime;4.7!antlr4-runtime.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-format;0.10.0!arrow-format.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.ivy#ivy;2.4.0!ivy.jar(src)
-[debug] 	[NOT REQUIRED] com.github.luben#zstd-jni;1.3.2-2!zstd-jni.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-graphx_2.11;2.4.3!spark-graphx_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-network-shuffle_2.11;2.4.3!spark-network-shuffle_2.11.jar(src)
-[debug] 	[NOT REQUIRED] com.chuusai#shapeless_2.11;2.3.2!shapeless_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-memory;0.10.0!arrow-memory.jar(src)
-[debug] 	[NOT REQUIRED] org.slf4j#jcl-over-slf4j;1.7.16!jcl-over-slf4j.jar(src)
-[debug] 	[NOT REQUIRED] joda-time#joda-time;2.9.9!joda-time.jar(src)
-[debug] 	[NOT REQUIRED] jline#jline;0.9.94!jline.jar(src)
-[debug] 	[NOT REQUIRED] junit#junit;3.8.1!junit.jar(src)
-[debug] 	[NOT REQUIRED] org.spire-math#spire_2.11;0.13.0!spire_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.slf4j#slf4j-api;1.7.25!slf4j-api.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-vector;0.10.0!arrow-vector.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-server-nodemanager;2.6.5!hadoop-yarn-server-nodemanager.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-client;2.6.5!hadoop-client.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-sql_2.11;2.4.3!spark-sql_2.11.jar(src)
-[debug] 	[NOT REQUIRED] com.github.rwl#jtransforms;2.4.0!jtransforms.jar(src)
-[debug] 	[NOT REQUIRED] commons-digester#commons-digester;1.8!commons-digester.jar(src)
-[debug] 	[NOT REQUIRED] commons-configuration#commons-configuration;1.6!commons-configuration.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-jobclient;2.6.5!hadoop-mapreduce-client-jobclient.jar(src)
-[debug] 	[NOT REQUIRED] org.slf4j#jul-to-slf4j;1.7.16!jul-to-slf4j.jar(src)
-[debug] 	[NOT REQUIRED] com.carrotsearch#hppc;0.7.2!hppc.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-sketch_2.11;2.4.3!spark-sketch_2.11.jar(src)
-[debug] 	[NOT REQUIRED] com.ning#compress-lzf;1.0.3!compress-lzf.jar(src)
-[debug] 	[NOT REQUIRED] org.roaringbitmap#shims;0.7.45!shims.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.xbean#xbean-asm6-shaded;4.8!xbean-asm6-shaded.jar(src)
-[debug] 	[NOT REQUIRED] org.typelevel#macro-compat_2.11;1.1.1!macro-compat_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.jersey.core#jersey-server;2.22.2!jersey-server.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.hk2.external#javax.inject;2.4.0-b34!javax.inject.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.jersey.bundles.repackaged#jersey-guava;2.22.2!jersey-guava.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.hk2.external#aopalliance-repackaged;2.4.0-b34!aopalliance-repackaged.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.orc#orc-core;1.5.5!orc-core.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.spark#spark-mllib-local_2.11;2.4.3!spark-mllib-local_2.11.jar(src)
-[debug] 	[NOT REQUIRED] com.fasterxml.jackson.core#jackson-databind;2.6.7.1!jackson-databind.jar(src)
-[debug] 	[NOT REQUIRED] com.twitter#chill-java;0.9.3!chill-java.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.zookeeper#zookeeper;3.4.6!zookeeper.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.11.12!scala-library.jar(src)
-[debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-core;3.1.5!metrics-core.jar(src)
-[debug] 	[NOT REQUIRED] io.netty#netty-all;4.1.17.Final!netty-all.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.curator#curator-recipes;2.6.0!curator-recipes.jar(src)
-[debug] 	[NOT REQUIRED] org.sonatype.sisu.inject#cglib;2.2.1-v20090111!cglib.jar(src)
-[debug] 	[NOT REQUIRED] com.vlkan#flatbuffers;1.2.0-3f79e055!flatbuffers.jar(src)
-[debug] 	[NOT REQUIRED] com.fasterxml.jackson.core#jackson-annotations;2.6.7!jackson-annotations.jar(src)
-[debug] 	[NOT REQUIRED] com.google.protobuf#protobuf-java;2.5.0!protobuf-java.jar(src)
-[debug] 	[NOT REQUIRED] javax.annotation#javax.annotation-api;1.2!javax.annotation-api.jar(src)
-[debug] 	[NOT REQUIRED] commons-codec#commons-codec;1.10!commons-codec.jar(src)
-[debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] 	[NOT REQUIRED] com.google.inject#guice;3.0!guice.jar(src)
-[debug] 	[NOT REQUIRED] javax.xml.stream#stax-api;1.0-2!stax-api.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.jersey.containers#jersey-container-servlet-core;2.22.2!jersey-container-servlet-core.jar(src)
-[debug] 	[NOT REQUIRED] org.glassfish.hk2#hk2-utils;2.4.0-b34!hk2-utils.jar(src)
 [debug] including url: jar:file:/home/zohaib/.sbt/boot/scala-2.12.7/org.scala-sbt/sbt/1.2.8/ivy-2.3.0-sbt-cb9cc189e9f3af519f9f102e6c5d446488ff6832.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] 	[NOT REQUIRED] org.xerial.snappy#snappy-java;1.1.7.3!snappy-java.jar(src)
-[debug] 	[NOT REQUIRED] io.netty#netty;3.9.9.Final!netty.jar(src)
-[debug] 	[NOT REQUIRED] commons-io#commons-io;2.4!commons-io.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-jackson;1.10.1!parquet-jackson.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-format;2.4.0!parquet-format.jar(src)
-[debug] settings loaded (125ms)
+[debug] settings loaded (73ms)
 [debug] 	default cache: /home/zohaib/.ivy2/cache
 [debug] 	default resolver: default
 [debug] 	-- 5 resolvers:
@@ -21644,18 +21574,88 @@
 [debug] 	public [ibiblio]
 [debug] 	main [chain] [shared, public]
 [debug] 	local [file]
+[debug] 	[NOT REQUIRED] javax.ws.rs#javax.ws.rs-api;2.0.1!javax.ws.rs-api.jar(src)
+[debug] settings loaded (40ms)
+[debug] 	default cache: /home/zohaib/.ivy2/cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-app;2.6.5!hadoop-mapreduce-client-app.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.httpcomponents#httpclient;4.2.5!httpclient.jar(src)
+[debug] 	[NOT REQUIRED] log4j#log4j;1.2.17!log4j.jar(src)
+[debug] 	[NOT REQUIRED] org.antlr#antlr4-runtime;4.7!antlr4-runtime.jar(src)
+[debug] 	[NOT REQUIRED] org.lz4#lz4-java;1.4.0!lz4-java.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.ivy#ivy;2.4.0!ivy.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-network-shuffle_2.11;2.4.3!spark-network-shuffle_2.11.jar(src)
+[debug] 	[NOT REQUIRED] com.github.luben#zstd-jni;1.3.2-2!zstd-jni.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-graphx_2.11;2.4.3!spark-graphx_2.11.jar(src)
+[debug] 	[NOT REQUIRED] com.chuusai#shapeless_2.11;2.3.2!shapeless_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-memory;0.10.0!arrow-memory.jar(src)
+[debug] 	[NOT REQUIRED] oro#oro;2.0.8!oro.jar(src)
+[debug] 	[NOT REQUIRED] org.slf4j#jcl-over-slf4j;1.7.16!jcl-over-slf4j.jar(src)
+[debug] 	[NOT REQUIRED] joda-time#joda-time;2.9.9!joda-time.jar(src)
+[debug] 	[NOT REQUIRED] junit#junit;3.8.1!junit.jar(src)
+[debug] 	[NOT REQUIRED] jline#jline;0.9.94!jline.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.arrow#arrow-vector;0.10.0!arrow-vector.jar(src)
+[debug] 	[NOT REQUIRED] org.spire-math#spire_2.11;0.13.0!spire_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.slf4j#slf4j-api;1.7.25!slf4j-api.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-sql_2.11;2.4.3!spark-sql_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-client;2.6.5!hadoop-client.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.xbean#xbean-asm6-shaded;4.8!xbean-asm6-shaded.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.commons#commons-compress;1.8.1!commons-compress.jar(src)
+[debug] 	[NOT REQUIRED] commons-digester#commons-digester;1.8!commons-digester.jar(src)
+[debug] 	[NOT REQUIRED] com.github.rwl#jtransforms;2.4.0!jtransforms.jar(src)
+[debug] 	[NOT REQUIRED] commons-configuration#commons-configuration;1.6!commons-configuration.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-jobclient;2.6.5!hadoop-mapreduce-client-jobclient.jar(src)
+[debug] 	[NOT REQUIRED] org.slf4j#jul-to-slf4j;1.7.16!jul-to-slf4j.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-sketch_2.11;2.4.3!spark-sketch_2.11.jar(src)
+[debug] 	[NOT REQUIRED] com.carrotsearch#hppc;0.7.2!hppc.jar(src)
+[debug] 	[NOT REQUIRED] com.ning#compress-lzf;1.0.3!compress-lzf.jar(src)
+[debug] 	[NOT REQUIRED] org.roaringbitmap#shims;0.7.45!shims.jar(src)
+[debug] 	[NOT REQUIRED] org.typelevel#macro-compat_2.11;1.1.1!macro-compat_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.jersey.core#jersey-server;2.22.2!jersey-server.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.jersey.bundles.repackaged#jersey-guava;2.22.2!jersey-guava.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.hk2.external#javax.inject;2.4.0-b34!javax.inject.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.orc#orc-core;1.5.5!orc-core.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.hk2.external#aopalliance-repackaged;2.4.0-b34!aopalliance-repackaged.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.spark#spark-mllib-local_2.11;2.4.3!spark-mllib-local_2.11.jar(src)
+[debug] 	[NOT REQUIRED] com.fasterxml.jackson.core#jackson-databind;2.6.7.1!jackson-databind.jar(src)
+[debug] 	[NOT REQUIRED] com.twitter#chill-java;0.9.3!chill-java.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.zookeeper#zookeeper;3.4.6!zookeeper.jar(src)
+[debug] 	[NOT REQUIRED] io.netty#netty-all;4.1.17.Final!netty-all.jar(src)
+[debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-core;3.1.5!metrics-core.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.curator#curator-recipes;2.6.0!curator-recipes.jar(src)
+[debug] 	[NOT REQUIRED] org.sonatype.sisu.inject#cglib;2.2.1-v20090111!cglib.jar(src)
+[debug] 	[NOT REQUIRED] com.vlkan#flatbuffers;1.2.0-3f79e055!flatbuffers.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.commons#commons-crypto;1.0.0!commons-crypto.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-common;2.6.5!hadoop-common.jar(src)
+[debug] 	[NOT REQUIRED] javax.annotation#javax.annotation-api;1.2!javax.annotation-api.jar(src)
+[debug] 	[NOT REQUIRED] commons-codec#commons-codec;1.10!commons-codec.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.11.12!scala-library.jar(src)
+[debug] 	[NOT REQUIRED] com.google.inject#guice;3.0!guice.jar(src)
+[debug] 	[NOT REQUIRED] javax.xml.stream#stax-api;1.0-2!stax-api.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.hk2#hk2-utils;2.4.0-b34!hk2-utils.jar(src)
+[debug] 	[NOT REQUIRED] commons-io#commons-io;2.4!commons-io.jar(src)
+[debug] 	[NOT REQUIRED] org.glassfish.jersey.containers#jersey-container-servlet-core;2.22.2!jersey-container-servlet-core.jar(src)
+[debug] 	[NOT REQUIRED] org.xerial.snappy#snappy-java;1.1.7.3!snappy-java.jar(src)
+[debug] 	[NOT REQUIRED] io.netty#netty;3.9.9.Final!netty.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-jackson;1.10.1!parquet-jackson.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-format;2.4.0!parquet-format.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-network-common_2.11;2.4.3!spark-network-common_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.directory.server#apacheds-kerberos-codec;2.0.0-M15!apacheds-kerberos-codec.jar(src)
 [debug] 	[NOT REQUIRED] com.univocity#univocity-parsers;2.7.3!univocity-parsers.jar(src)
 [debug] 	[NOT REQUIRED] com.twitter#chill_2.11;0.9.3!chill_2.11.jar(src)
 [debug] 	[NOT REQUIRED] javax.servlet#javax.servlet-api;3.1.0!javax.servlet-api.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.jettison#jettison;1.1!jettison.jar(src)
-[debug] 	[NOT REQUIRED] com.fasterxml.jackson.module#jackson-module-paranamer;2.7.9!jackson-module-paranamer.jar(src)
 [debug] 	[NOT REQUIRED] org.scalanlp#breeze-macros_2.11;0.13.2!breeze-macros_2.11.jar(src)
+[debug] 	[NOT REQUIRED] com.fasterxml.jackson.module#jackson-module-paranamer;2.7.9!jackson-module-paranamer.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-common;2.6.5!hadoop-yarn-common.jar(src)
 [debug] 	[NOT REQUIRED] com.google.code.gson#gson;2.2.4!gson.jar(src)
 [debug] 	[NOT REQUIRED] javax.validation#validation-api;1.1.0.Final!validation-api.jar(src)
 [debug] 	[NOT REQUIRED] org.codehaus.jackson#jackson-xc;1.9.13!jackson-xc.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-api;2.6.5!hadoop-yarn-api.jar(src)
 [debug] 	[NOT REQUIRED] commons-httpclient#commons-httpclient;3.1!commons-httpclient.jar(src)
 [debug] 	[NOT REQUIRED] org.glassfish.jersey.core#jersey-client;2.22.2!jersey-client.jar(src)
 [debug] 	[NOT REQUIRED] org.spark-project.spark#unused;1.0.0!unused.jar(src)
@@ -21665,39 +21665,39 @@
 [debug] 	[NOT REQUIRED] org.apache.avro#avro-mapred;1.8.2!avro-mapred.jar(src)
 [debug] 	[NOT REQUIRED] commons-cli#commons-cli;1.2!commons-cli.jar(src)
 [debug] 	[NOT REQUIRED] aopalliance#aopalliance;1.0!aopalliance.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-common;2.6.5!hadoop-yarn-common.jar(src)
-[debug] 	[NOT REQUIRED] io.airlift#aircompressor;0.10!aircompressor.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-server-nodemanager;2.6.5!hadoop-yarn-server-nodemanager.jar(src)
 [debug] 	[NOT REQUIRED] org.glassfish.hk2#osgi-resource-locator;1.0.1!osgi-resource-locator.jar(src)
-[debug] 	[NOT REQUIRED] org.lz4#lz4-java;1.4.0!lz4-java.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-client;2.6.5!hadoop-yarn-client.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-streaming_2.11;2.4.3!spark-streaming_2.11.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.commons#commons-math3;3.4.1!commons-math3.jar(src)
 [debug] 	[NOT REQUIRED] org.glassfish.hk2#hk2-locator;2.4.0-b34!hk2-locator.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.directory.api#api-util;1.0.0-M20!api-util.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-mapreduce-client-shuffle;2.6.5!hadoop-mapreduce-client-shuffle.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.commons#commons-math3;3.4.1!commons-math3.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-common;1.10.1!parquet-common.jar(src)
-[debug] 	[NOT REQUIRED] com.google.guava#guava;11.0.2!guava.jar(src)
+[debug] 	[NOT REQUIRED] commons-net#commons-net;3.1!commons-net.jar(src)
 [debug] 	[NOT REQUIRED] javax.activation#activation;1.1.1!activation.jar(src)
-[debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-json;3.1.5!metrics-json.jar(src)
+[debug] 	[NOT REQUIRED] com.google.guava#guava;11.0.2!guava.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.directory.server#apacheds-kerberos-codec;2.0.0-M15!apacheds-kerberos-codec.jar(src)
 [debug] 	[NOT REQUIRED] com.clearspring.analytics#stream;2.7.0!stream.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-hadoop;1.10.1!parquet-hadoop.jar(src)
+[debug] 	[NOT REQUIRED] io.dropwizard.metrics#metrics-json;3.1.5!metrics-json.jar(src)
+[debug] 	[NOT REQUIRED] com.fasterxml.jackson.core#jackson-annotations;2.6.7!jackson-annotations.jar(src)
 [debug] 	[NOT REQUIRED] com.esotericsoftware#minlog;1.3.0!minlog.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-common;2.6.5!hadoop-common.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.commons#commons-crypto;1.0.0!commons-crypto.jar(src)
+[debug] 	[NOT REQUIRED] javax.inject#javax.inject;1!javax.inject.jar(src)
+[debug] 	[NOT REQUIRED] org.htrace#htrace-core;3.0.4!htrace-core.jar(src)
 [debug] 	[NOT REQUIRED] org.roaringbitmap#RoaringBitmap;0.7.45!RoaringBitmap.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.spark#spark-unsafe_2.11;2.4.3!spark-unsafe_2.11.jar(src)
-[debug] 	[NOT REQUIRED] javax.xml.bind#jaxb-api;2.2.2!jaxb-api.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-hadoop;1.10.1!parquet-hadoop.jar(src)
 [debug] 	[NOT REQUIRED] org.glassfish.jersey.core#jersey-common;2.22.2!jersey-common.jar(src)
 [debug] 	[NOT REQUIRED] org.slf4j#slf4j-log4j12;1.7.16!slf4j-log4j12.jar(src)
-[debug] 	[NOT REQUIRED] commons-net#commons-net;3.1!commons-net.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.0.4!scala-parser-combinators_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.11.12!scala-compiler.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.parquet#parquet-common;1.10.1!parquet-common.jar(src)
 [debug] 	[NOT REQUIRED] org.apache.parquet#parquet-column;1.10.1!parquet-column.jar(src)
-[debug] 	[NOT REQUIRED] jline#jline;2.14.3!jline.jar(src)
-[debug] 	[NOT REQUIRED] javax.inject#javax.inject;1!javax.inject.jar(src)
+[debug] 	[NOT REQUIRED] javax.xml.bind#jaxb-api;2.2.2!jaxb-api.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.0.4!scala-parser-combinators_2.11.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.11;1.0.5!scala-xml_2.11.jar(src)
-[debug] 	[NOT REQUIRED] org.htrace#htrace-core;3.0.4!htrace-core.jar(src)
-[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-client;2.6.5!hadoop-yarn-client.jar(src)
-[debug] :: resolution report :: resolve 10561ms :: artifacts dl 229ms
+[debug] 	[NOT REQUIRED] jline#jline;2.14.3!jline.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.11.12!scala-compiler.jar(src)
+[debug] 	[NOT REQUIRED] io.airlift#aircompressor;0.10!aircompressor.jar(src)
+[debug] 	[NOT REQUIRED] org.apache.hadoop#hadoop-yarn-api;2.6.5!hadoop-yarn-api.jar(src)
+[debug] :: resolution report :: resolve 11168ms :: artifacts dl 174ms
 [debug] 	report for default#video-recomendation-system$sources;0.1 compile produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-compile.xml
 [debug] 	report for default#video-recomendation-system$sources;0.1 runtime produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-runtime.xml
 [debug] 	report for default#video-recomendation-system$sources;0.1 test produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-test.xml
@@ -21709,4 +21709,4 @@
 [debug] 	report for default#video-recomendation-system$sources;0.1 plugin produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-plugin.xml
 [debug] 	report for default#video-recomendation-system$sources;0.1 pom produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-pom.xml
 [debug] 	report for default#video-recomendation-system$sources;0.1 scala-tool produced in /home/zohaib/fun/JavaProjects/video recomendation system/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-scala-tool.xml
-[debug] 	resolve done (10561ms resolve - 229ms download)
+[debug] 	resolve done (11168ms resolve - 174ms download)

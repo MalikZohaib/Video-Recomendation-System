@@ -10,7 +10,8 @@ import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.{Row, SparkSession}
-
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 
@@ -28,6 +29,8 @@ object Recomendation {
 
   def main(args: Array[String]): Unit = {
 
+    Logger.getLogger("org").setLevel(Level.OFF)
+    Logger.getLogger("akka").setLevel(Level.OFF)
     //spark session
     val spark = SparkSession
       .builder
@@ -37,6 +40,7 @@ object Recomendation {
 
     import spark.implicits._
 
+    //    val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
     val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
       .map(parseRating)
       .toDF().cache()
@@ -122,200 +126,44 @@ object Recomendation {
         }
         currentDistance
     })
-    val firstrating = firstMoviesDistanceRdds.cache().collect()(0)
+    var sortedDistancesValues = ArrayBuffer[(Int,Int,Double)]()
+    for(distances <- equiDistanceValues){
+      for(distance <- distances){
+        sortedDistancesValues.append(distance)
+      }
+    }
+
+//    sortedDistancesValues.foreach(println)
+    var sortedDistancesValuesRdds = spark.sparkContext.parallelize(sortedDistancesValues)
+    val firstrating = firstMoviesDistanceRdds.collect()(0)
     val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
     liknessCombinations.append(firstrating)
     var count = 0
     while (count < liknessCombinations.size){
       val currentRating = liknessCombinations(count)
-      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
-      val allEquiDistRatings = firstMoviesDistanceRdds.filter(mov => mov._2.equals(currentRatingBrodCasted.value._2) || mov._1.equals(currentRatingBrodCasted.value._2))
+      println(currentRating)
+//      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
+
+      val allEquiDistRatings = sortedDistancesValuesRdds.filter(mov => mov._2.equals(currentRating._2) || mov._1.equals(currentRating._2))
+      println(allEquiDistRatings.count())
       if(allEquiDistRatings.count() > 0){
         val finalDistance = allEquiDistRatings.reduce((x, y) => if(x._3 < y._3) x else y)
-        println(finalDistance)
+//        allEquiDistRatings.unpersist()
+        liknessCombinations.append(finalDistance)
+        val finalDistanceRdd = spark.sparkContext.parallelize(Array(finalDistance))
+          println("final Distance : "+finalDistance)
+        sortedDistancesValuesRdds = sortedDistancesValuesRdds.subtract(finalDistanceRdd)
+//        println(sortedDistancesValuesRdds.count())
+//        finalDistanceRdd.unpersist()
       }
+      println("likness size: "+liknessCombinations.size)
+      println("Looop count: "+count)
       count +=1
-//      println(allEquiDistRatings)
-
-      //      if(allEquiDistRatings.count() > 0){
-//        var minDistanceBrodcasted = spark.sparkContext.broadcast(allEquiDistRatings.take(1)(0))
-//
-//        allEquiDistRatings.map(distance => {
-//          if(distance._3 < minDistanceBrodcasted.value._3)
-//
-//        })
-//      }
 
     }
 
-
-
-//    ratingTuples.show()
-//    ratingTuples.collect()
-//    val movIds = movies.map( mov => {
-//      var users = ArrayBuffer[(Int, Int, Float)]
-//      for( rating <-  brodcastRatings.value ){
-//        if(rating._2.equals(mov)){
-//          users.apply(Seq(rating))
-//        }
-//      }
-//  val usrs = brodcastRatings.value.foreach(rating => {
-//        if(mov.equals(rating._2)){
-//          return rating : (Int, Int, Float)
-//        }
-//      })
-//  users
-//    })
-//    movIds.show(100)
-//    var users = ArrayBuffer[(Int,Int,Float)]
-//      val cosineSimilarities = movies.map(movie => {
-////      val users = spark.sql(s"select * from ratings where _2=${movie.toInt}")
-//    var users = ArrayBuffer()
-//      ratingTuples.foreach( mov => {
-//        if(mov._2 == movie){
-//          users.compose(Seq(mov._1.toInt, mov._2.toInt, mov._3.toFloat))
-//        }
-//      })
-//
-//      users
-////      val users = ratings.selectExpr()
-////      ratings.map( (rating) => {
-////        if(rating.getAs(1) == movie){
-////          val user = rating.getAs(0)
-////
-////        }
-////      })
-////      users.collect().length: Int
-//    })
-//    cosineSimilarities.show()
-    //    movies.show(100)
-//    groupByMovies.collect()
-
-//    usersGroup.agg("_2")
-//    usersGroup.agg()
-//    groupByMovies.show(100)
-//    val movies =   groupByMovies.toDF()
-
-//    println(usersGroup.show())
-//    val processedTuples = ratingTuples.map(rat => {
-////      val recomendation = ratingTuples.map(x  => {
-//////          if(rat.getAs(0) == x.getAs(0)){
-////            println("yes")
-//////          }
-////         x._1 : Int
-////      })
-////      recomendation.show()
-//      rat._1 : Int
-//    })
-//    ratingTuples.show(100)
-//    processedTuples.show()
-//      ratings.map{x=>
-//        print(x.getAs("user").toString())
-//        (x.getAs("user"), )
-//      }
-//      val cosineSimalarities = ratings.map(r => showRating(r.getAs("user").toString(),r.getAs("product").toString(), r.getAs("rating").toString()))
-//        cosineSimalarities.count()
-    // Map ratings to 1 or 0, 1 indicating a movie that should be recommended
-//    val binarizedRatings = ratings.map(r => Rating(r.getAs("user"), r.getAs("product"),r.getAs("rating"))
-    // Summarize ratings
-//    val numRatings = ratings.count()
-//    val numUsers = ratings.map(_.getAs("user").toString()).distinct().count()
-//    val numMovies = ratings.map(_.getAs("product").toString()).distinct().count()
-//    println(s"Got $numRatings ratings from $numUsers users on $numMovies movies.")
-
-//    val splits = ratings.randomSplit(Array(0.8, 0.2))
-//    val training = splits(0).cache()
-//
-//    val numTraining = training.count()
-//    println(s"Training: $numTraining")
-//    val numRatings = ratings.count()
-//    val numUsers = ratings.map(_.user).distinct().count()
-//    val numMovies = ratings.map(_.product).distinct().count()
-//    println(s"Got $numRatings ratings from $numUsers users on $numMovies movies. " )
-////    ratings.map(r => showRating(r.user,r.product,r.rating))
-//    val sqlContext = spark.sqlContext
-    //spark context
-//    val conf:SparkConf = new SparkConf().setAppName("Video Recomendation system").setMaster("local")
-//    val sc:SparkContext = new SparkContext(conf)
-//    val sqlContext = new org.apache.spark.sql.SQLContext(sc)
-
-    //rating file
-//    val ratigsFile = "data/ratings.csv"
-//    val df1 = spark.read.format("com.databricks.spark.csv").option("header", true).load(ratigsFile)
-//
-//    val ratingsDF = df1.select(df1.col("userId"), df1.col("movieId"), df1.col("rating"), df1.col("timestamp"))
-//    ratingsDF.show(false)
-
-    //movie file
-//    val moviesFile = "data/movies.csv"
-//    val df2 = spark.read.format("com.databricks.spark.csv").option("header", true).load(moviesFile)
-//    val moviesDF = df2.select(df2.col("movieId"), df2.col("title"), df2.col("genres"))
-//    moviesDF.show(false)
-
-    //registering dataframes to make queries
-//    ratingsDF.createOrReplaceTempView("ratings")
-//    moviesDF.createOrReplaceTempView("movies")
-
-//    //explore the dataset of movielens
-//    val numRatings = ratingsDF.count()
-//    val numUsers = ratingsDF.select(ratingsDF.col("userId")).distinct().count()
-//    val numMovies = ratingsDF.select(ratingsDF.col("movieId")).distinct().count()
-//    println("Got " + numRatings + " ratings from " + numUsers + " users on " + numMovies + " movies.")
-//
-//    //quering maxumum and min rating along with count
-//    val results = spark.sql("select movies.title, movierates.maxr, movierates.minr, movierates.cntu "
-//
-//      + "from(SELECT ratings.movieId,max(ratings.rating) as maxr,"
-//
-//      + "min(ratings.rating) as minr,count(distinct userId) as cntu "
-//
-//      + "FROM ratings group by ratings.movieId) movierates "
-//
-//      + "join movies on movierates.movieId=movies.movieId "
-//
-//      + "order by movierates.cntu desc")
-//    results.show(false)
-//
-//    //find the most active users and their ratings
-//    val mostActiveUsersSchemaRDD = spark.sql("SELECT ratings.userId, count(*) as ct from ratings "+ "group by ratings.userId order by ct desc limit 10")
-//    mostActiveUsersSchemaRDD.show(false)
-
-    //spliting the data into traingning and test data set
-//    val splits = ratingsDF.randomSplit(Array(0.75, 0.25), seed = 12345L)
-//
-//    val (trainingData, testData) = (splits(0), splits(1))
-
-//    val numTraining = trainingData.count()
-//
-//    val numTest = testData.count()
-//
-//    println("Training: " + numTraining + " test: " + numTest)
-//    val rdds = trainingData.toDF()
-//    println(getTheAnswer())
-//  def doStuff(rdd: String): RDD[String] = {
-////    val field_ = this.field
-////    rdd.map(x => field_ + x)
-//    return rdd
-//  }
-
-    //calculating the cosine similarity differences
-//    val newT = new MyTokenlizer()
-//    trainingData.map (x => println(x))
-
+    sortedDistancesValuesRdds.collect().foreach(println)
 
   }
 
 }
-//
-//class MyTokenlizer extends Serializable {
-//
-//  def getRows(CurRow:Row):Row={
-//
-////    val somefield =curRow.getAs[String]("field1")
-////
-////    --- saome manipulation happening here and finally return a array of rows
-////
-////    return res[Row]
-//    return CurRow
-//  }
-//}
