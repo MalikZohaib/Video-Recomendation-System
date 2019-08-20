@@ -40,8 +40,8 @@ object Recomendation {
 
     import spark.implicits._
 
-    //    val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
-    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
+        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
+//    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
       .map(parseRating)
       .toDF().cache()
     ratings.createOrReplaceTempView("ratings")
@@ -82,7 +82,7 @@ object Recomendation {
     }
 
     val moviesDiffRdds = spark.sparkContext.parallelize(moviesDiff)
-    println("movies size: "+moviesDiffRdds.count())
+//    println("movies size: "+moviesDiffRdds.count())
     println("out of big loop")
     val equiDistanceValues = ArrayBuffer[Array[(Int,Int,Double)]]()
     moviesColl.foreach(movId => {
@@ -106,8 +106,8 @@ object Recomendation {
         }
       }
 //      combinedMovies.foreach(println)
-      val combinedMoviesRdds = spark.sparkContext.parallelize(combinedMovies)
-      equiDistanceValues.prepend(combinedMoviesRdds.map(rating => (rating._1,rating._2,Math.sqrt(rating._3))).collect())
+//      val combinedMoviesRdds = spark.sparkContext.parallelize(combinedMovies)
+      equiDistanceValues.prepend(combinedMovies.toArray)
     })
 
     val firstMovies = moviesColl(0)
@@ -133,36 +133,151 @@ object Recomendation {
       }
     }
 
+
 //    sortedDistancesValues.foreach(println)
     var sortedDistancesValuesRdds = spark.sparkContext.parallelize(sortedDistancesValues)
+    val groupedData = moviesColl.map(movId => {
+      val group = sortedDistancesValuesRdds.filter(dist => dist._2.equals(movId) || dist._1.equals(movId))
+      val moveIdBroadCasted = spark.sparkContext.broadcast(movId)
+      val groupSorted = group.map(dist => {
+
+        var distance : (Int, Int, Double) = null
+        if(dist._2.equals(moveIdBroadCasted.value) || dist._1.equals(moveIdBroadCasted.value)){
+          if(dist._1.equals(moveIdBroadCasted.value)){
+            distance = (moveIdBroadCasted.value,dist._2,dist._3)
+          }else{
+            distance = (moveIdBroadCasted.value,dist._1,dist._3)
+          }
+        }
+//        if(distance != null)
+          distance
+      }).collect()
+
+
+      (movId, groupSorted.distinct)
+    })
+
+//    groupedData.foreach(x => {
+//      println(x._1)
+//      x._2.foreach(println)
+//    })
+//    sortedDistancesValuesRdds.groupBy(distance => distance._1).collect().foreach(println)
+    println("removing duplicates")
+    var groupedDataRdds = spark.sparkContext.parallelize(groupedData)
+    val cleanedGroupedData = ArrayBuffer[(Int,ArrayBuffer[(Int,Int,Double)])]()
+    //remove duplications
+    for(movieId <- moviesColl){
+//      println("Size before: "+groupedDataRdds.count())
+//      println("movieId : "+movieId)
+      val group = groupedDataRdds.filter(distances => distances._1.equals(movieId)).first()
+
+//      group._2.foreach(println)
+      val newGroup = ArrayBuffer[(Int,Int, Double)]()
+//      println("group Sizze :"+ group._1)
+      for(distance <- group._2){
+        val group1 = groupedDataRdds.filter(distances => distances._1.equals(distance._2))
+        var foundDuplicate = false
+        if(group1.count() > 0){
+          val duplicates = spark.sparkContext.parallelize(group1.first()._2).filter(dist => dist._2.equals(distance._1))
+          if(duplicates.count() > 0){
+            foundDuplicate = true
+            //          println("duplicate : "+duplicate)
+            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3+duplicates.first()._3)))
+          }
+        }
+        if(!foundDuplicate){
+          val group2 = spark.sparkContext.parallelize(cleanedGroupedData).filter(dist => dist._1.equals(distance._2)).first()
+          val result = spark.sparkContext.parallelize(group2._2).filter(dist => dist._2.equals(distance._1)).first()
+//          println("result :"+result)
+          if(result == null)
+            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3)))
+        }
+      }
+
+      groupedDataRdds = groupedDataRdds.filter(dist => !dist._1.equals(movieId))
+//      println("Size after: "+groupedDataRdds.count())
+      cleanedGroupedData.append((movieId,newGroup))
+    }
+//    cleanedGroupedData.foreach(x=> {
+//      println(x._1)
+//      x._2.foreach(println)
+//    })
+//
+    println("calculating Likness")
+    val cleanedGroupedDataRdds = spark.sparkContext.parallelize(cleanedGroupedData)
     val firstrating = firstMoviesDistanceRdds.collect()(0)
     val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
     liknessCombinations.append(firstrating)
     var count = 0
     while (count < liknessCombinations.size){
       val currentRating = liknessCombinations(count)
-      println(currentRating)
-//      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
+      println("current rating:" +currentRating)
+      //      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
 
-      val allEquiDistRatings = sortedDistancesValuesRdds.filter(mov => mov._2.equals(currentRating._2) || mov._1.equals(currentRating._2))
-      println(allEquiDistRatings.count())
+      val allEquiDistRatings = cleanedGroupedDataRdds.filter(mov => mov._1.equals(currentRating._2))
+//      allEquiDistRatings.foreach(x => {
+//        println(x._1)
+//        x._2.foreach(println)
+//      })
+//      allEquiDistRatings.foreach(x=>x._2.foreach(println))
       if(allEquiDistRatings.count() > 0){
-        val finalDistance = allEquiDistRatings.reduce((x, y) => if(x._3 < y._3) x else y)
-//        allEquiDistRatings.unpersist()
-        liknessCombinations.append(finalDistance)
-        val finalDistanceRdd = spark.sparkContext.parallelize(Array(finalDistance))
+        var allDistancesRdds = spark.sparkContext.parallelize(allEquiDistRatings.first()._2)
+//        allEquiDistRatings.collect()(0)._2.foreach(println)
+        println(allEquiDistRatings.collect()(0)._1)
+        if(allDistancesRdds.count() > 0){
+          var finalDistance = allDistancesRdds.reduce((x, y) => if(x._3 < y._3) x else y)
+          //        while(currentRating.equals(finalDistance) || (currentRating._1.equals(finalDistance._2) && currentRating._2.equals(finalDistance._1))){
+          //          val remainingDistances = allDistancesRdds.subtract(spark.sparkContext.parallelize(Array(finalDistance)))
+          //          finalDistance = remainingDistances.reduce((x, y) => if(x._3 < y._3) x else y)
+          //        }
+
+          //        allEquiDistRatings.unpersist()
+          liknessCombinations.append(finalDistance)
+
+          val finalDistanceRdd = spark.sparkContext.parallelize( Array((currentRating._2, Array(finalDistance))))
           println("final Distance : "+finalDistance)
-        sortedDistancesValuesRdds = sortedDistancesValuesRdds.subtract(finalDistanceRdd)
-//        println(sortedDistancesValuesRdds.count())
-//        finalDistanceRdd.unpersist()
+          //        groupedDataRdds = groupedDataRdds.subtract(finalDistanceRdd)
+        }
+
       }
       println("likness size: "+liknessCombinations.size)
-      println("Looop count: "+count)
       count +=1
-
+      println("Looop count: "+count)
     }
 
-    sortedDistancesValuesRdds.collect().foreach(println)
+    liknessCombinations.foreach(println)
+
+
+    //old code
+//
+//    val firstrating = firstMoviesDistanceRdds.collect()(0)
+//    val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
+//    liknessCombinations.append(firstrating)
+//    var count = 0
+//    while (count < liknessCombinations.size){
+//      val currentRating = liknessCombinations(count)
+//      println(currentRating)
+////      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
+//
+//      val allEquiDistRatings = sortedDistancesValuesRdds.filter(mov => mov._2.equals(currentRating._2) || mov._1.equals(currentRating._2))
+//      println(allEquiDistRatings.count())
+//      if(allEquiDistRatings.count() > 0){
+//        val finalDistance = allEquiDistRatings.reduce((x, y) => if(x._3 < y._3) x else y)
+////        allEquiDistRatings.unpersist()
+//        liknessCombinations.append(finalDistance)
+//        val finalDistanceRdd = spark.sparkContext.parallelize(Array(finalDistance))
+//          println("final Distance : "+finalDistance)
+//        sortedDistancesValuesRdds = sortedDistancesValuesRdds.subtract(finalDistanceRdd)
+////        println(sortedDistancesValuesRdds.count())
+////        finalDistanceRdd.unpersist()
+//      }
+//      println("likness size: "+liknessCombinations.size)
+//      println("Looop count: "+count)
+//      count +=1
+//
+//    }
+//
+//    sortedDistancesValuesRdds.collect().foreach(println)
 
   }
 
