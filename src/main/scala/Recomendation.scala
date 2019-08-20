@@ -40,8 +40,8 @@ object Recomendation {
 
     import spark.implicits._
 
-        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
-//    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
+//        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
+    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
       .map(parseRating)
       .toDF().cache()
     ratings.createOrReplaceTempView("ratings")
@@ -162,49 +162,49 @@ object Recomendation {
 //      x._2.foreach(println)
 //    })
 //    sortedDistancesValuesRdds.groupBy(distance => distance._1).collect().foreach(println)
-    println("removing duplicates")
-    var groupedDataRdds = spark.sparkContext.parallelize(groupedData)
-    val cleanedGroupedData = ArrayBuffer[(Int,ArrayBuffer[(Int,Int,Double)])]()
-    //remove duplications
-    for(movieId <- moviesColl){
-//      println("Size before: "+groupedDataRdds.count())
-//      println("movieId : "+movieId)
-      val group = groupedDataRdds.filter(distances => distances._1.equals(movieId)).first()
-
-//      group._2.foreach(println)
-      val newGroup = ArrayBuffer[(Int,Int, Double)]()
-//      println("group Sizze :"+ group._1)
-      for(distance <- group._2){
-        val group1 = groupedDataRdds.filter(distances => distances._1.equals(distance._2))
-        var foundDuplicate = false
-        if(group1.count() > 0){
-          val duplicates = spark.sparkContext.parallelize(group1.first()._2).filter(dist => dist._2.equals(distance._1))
-          if(duplicates.count() > 0){
-            foundDuplicate = true
-            //          println("duplicate : "+duplicate)
-            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3+duplicates.first()._3)))
-          }
-        }
-        if(!foundDuplicate){
-          val group2 = spark.sparkContext.parallelize(cleanedGroupedData).filter(dist => dist._1.equals(distance._2)).first()
-          val result = spark.sparkContext.parallelize(group2._2).filter(dist => dist._2.equals(distance._1)).first()
-//          println("result :"+result)
-          if(result == null)
-            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3)))
-        }
-      }
-
-      groupedDataRdds = groupedDataRdds.filter(dist => !dist._1.equals(movieId))
-//      println("Size after: "+groupedDataRdds.count())
-      cleanedGroupedData.append((movieId,newGroup))
-    }
+//    println("removing duplicates")
+//    var groupedDataRdds = spark.sparkContext.parallelize(groupedData)
+//    val cleanedGroupedData = ArrayBuffer[(Int,ArrayBuffer[(Int,Int,Double)])]()
+//    //remove duplications
+//    for(movieId <- moviesColl){
+////      println("Size before: "+groupedDataRdds.count())
+////      println("movieId : "+movieId)
+//      val group = groupedDataRdds.filter(distances => distances._1.equals(movieId)).first()
+//
+////      group._2.foreach(println)
+//      val newGroup = ArrayBuffer[(Int,Int, Double)]()
+////      println("group Sizze :"+ group._1)
+//      for(distance <- group._2){
+//        val group1 = groupedDataRdds.filter(distances => distances._1.equals(distance._2))
+//        var foundDuplicate = false
+//        if(group1.count() > 0){
+//          val duplicates = spark.sparkContext.parallelize(group1.first()._2).filter(dist => dist._2.equals(distance._1))
+//          if(duplicates.count() > 0){
+//            foundDuplicate = true
+//            //          println("duplicate : "+duplicate)
+//            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3+duplicates.first()._3)))
+//          }
+//        }
+//        if(!foundDuplicate){
+//          val group2 = spark.sparkContext.parallelize(cleanedGroupedData).filter(dist => dist._1.equals(distance._2)).first()
+//          val result = spark.sparkContext.parallelize(group2._2).filter(dist => dist._2.equals(distance._1)).first()
+////          println("result :"+result)
+//          if(result == null)
+//            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3)))
+//        }
+//      }
+//
+//      groupedDataRdds = groupedDataRdds.filter(dist => !dist._1.equals(movieId))
+////      println("Size after: "+groupedDataRdds.count())
+//      cleanedGroupedData.append((movieId,newGroup))
+//    }
 //    cleanedGroupedData.foreach(x=> {
 //      println(x._1)
 //      x._2.foreach(println)
 //    })
 //
     println("calculating Likness")
-    val cleanedGroupedDataRdds = spark.sparkContext.parallelize(cleanedGroupedData)
+    var cleanedGroupedDataRdds = spark.sparkContext.parallelize(groupedData)
     val firstrating = firstMoviesDistanceRdds.collect()(0)
     val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
     liknessCombinations.append(firstrating)
@@ -220,6 +220,7 @@ object Recomendation {
 //        x._2.foreach(println)
 //      })
 //      allEquiDistRatings.foreach(x=>x._2.foreach(println))
+      println("All Equi distance size: "+ allEquiDistRatings.count())
       if(allEquiDistRatings.count() > 0){
         var allDistancesRdds = spark.sparkContext.parallelize(allEquiDistRatings.first()._2)
 //        allEquiDistRatings.collect()(0)._2.foreach(println)
@@ -233,10 +234,24 @@ object Recomendation {
 
           //        allEquiDistRatings.unpersist()
           liknessCombinations.append(finalDistance)
+          val newEquiDistanceValues = allDistancesRdds.filter(dist => !dist.equals(finalDistance)).collect()
+          println("allequidistance: "+allEquiDistRatings.count() )
+          println("Size of groupData:"+cleanedGroupedDataRdds.count())
+          cleanedGroupedDataRdds = cleanedGroupedDataRdds.filter(dist => !dist._1.equals(finalDistance._1))
+          println("Size of groupData:"+cleanedGroupedDataRdds.count())
+//          val newEquiDistanceValuesRdds = spark.sparkContext.parallelize(ArrayBuffer)
+          if(newEquiDistanceValues.length > 0){
+            val cleanedGroup = ArrayBuffer[(Int,Array[(Int,Int,Double)])]()
+            cleanedGroup.appendAll(cleanedGroupedDataRdds.collect())
+            cleanedGroup.append((finalDistance._1, newEquiDistanceValues))
+            cleanedGroupedDataRdds = spark.sparkContext.parallelize(cleanedGroup)
+            //          cleanedGroupedDataRdds ++ cleanedGroupedDataRdds.union(newEquiDistanceValuesRdds.first())
+            println("Size of groupData:"+cleanedGroupedDataRdds.count())
+            //          val finalDistanceRdd = spark.sparkContext.parallelize( Array((currentRating._2, Array(finalDistance))))
+            println("final Distance : "+finalDistance)
+            //        groupedDataRdds = groupedDataRdds.subtract(finalDistanceRdd)
+          }
 
-          val finalDistanceRdd = spark.sparkContext.parallelize( Array((currentRating._2, Array(finalDistance))))
-          println("final Distance : "+finalDistance)
-          //        groupedDataRdds = groupedDataRdds.subtract(finalDistanceRdd)
         }
 
       }
