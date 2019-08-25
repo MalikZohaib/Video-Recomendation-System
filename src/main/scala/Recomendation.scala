@@ -6,12 +6,14 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
 import org.apache.spark.mllib.recommendation.Rating
-import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
+import org.apache.spark.mllib.clustering.{KMeans, KMeansModel, VectorWithNorm}
 import org.apache.spark.mllib.linalg
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import org.apache.spark.util.random.XORShiftRandom
+
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 
@@ -261,6 +263,32 @@ object Recomendation {
     }
 
     liknessCombinations.foreach(println)
+
+    val parsedData =  spark.sparkContext.parallelize(liknessCombinations).map(r => {
+      val vector = Vectors.dense(r._3.toDouble)
+
+      vector : linalg.Vector
+    })
+
+    // Cluster the data into two classes using KMeans
+    val numClusters = 10
+    val numIterations = 40
+    val clusters = KMeans.train(parsedData, numClusters, numIterations)
+    // Evaluate clustering by computing Within Set Sum of Squared Errors
+    val WSSSE = clusters.computeCost(parsedData)
+    println(s"Within Set Sum of Squared Errors = $WSSSE")
+    //    println(clusters.clusterCenters)
+    println(clusters.distanceMeasure)
+    //    println(clusters.predict(tra))
+    clusters.clusterCenters.foreach(
+      center => {
+        println(center)
+      }
+    )
+
+    // Save and load model
+    clusters.save(spark.sparkContext, "data/KMeansExample/KMeansModel")
+    val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansExample/KMeansModel")
 
 
     //old code
