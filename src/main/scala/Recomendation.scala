@@ -252,7 +252,7 @@ object Recomendation {
     val sortedCenters = scenters.sortWith(_ < _)
     sortedCenters.foreach(println)
 
-    spark.sparkContext.parallelize(liknessCombinations).map(likness => {
+    val finalClustersWithRatings = spark.sparkContext.parallelize(liknessCombinations).map(likness => {
       var prevDistance : Double = -1
       var prevCluster = sortedCenters(0)
       var found = false
@@ -273,50 +273,48 @@ object Recomendation {
         }
         count += 1
       }
-//      val predictedDistance = sortedCenters.foreach(cluster => {
-//        val newDistance = Math.sqrt(Math.pow(likness._3-cluster,2))
-//        if(prevDistance != -1){
-//          if(newDistance > prevDistance){
-//            prevDistance
-//          } else {
-//            prevCluster = cluster
-//            prevDistance = newDistance
-//          }
-//        }else {
-//          prevCluster = cluster
-//          prevDistance = newDistance
-//        }
-//        prevCluster = cluster
-//      })
-//      if(predictedDistance == prevDistance)
       (prevCluster,likness._1,likness._2,likness._3)
-    }).collect().groupBy(x => x._1).toArray.foreach(x => {
-      println(x._1)
-      x._2.foreach(println)
+    }).collect().groupBy(x => x._1).toArray
+    //testing user rating
+    val testUserRatings = Array((0,1,3.0F),(0,2,4.0F),(0,5,3.0F))
+    val testMoviesColls = Array(1,2,5)
+    val testMoviesDiff = calculateMoviesDiff(testMoviesColls,spark.sparkContext.parallelize(testUserRatings).toDS())
+
+    val testMoviesDiffRdds = spark.sparkContext.parallelize(testMoviesDiff)
+
+
+    //calculating  Equidistance values
+    val testFinalEquidistances = ArrayBuffer[(Int, Int, Double)]()
+    val testEquiDistanceValues = calculateEquiDistance(testMoviesColls,testMoviesDiffRdds)
+    testEquiDistanceValues.foreach(x => {
+      x.foreach(similairty => {
+        if(testFinalEquidistances.indexOf((similairty._2,similairty._1,similairty._3)) == -1){
+          testFinalEquidistances.append(similairty)
+        }
+      })
     })
 
-    //testing user rating
-    val testUserRatings = Array((0,1,3.0),(0,2,4.0),(0,5,3.0))
-    calcualteSimilarityForUser(testUserRatings)
+    val testEquidistanceBrodcasted = spark.sparkContext.broadcast(testFinalEquidistances)
 
+    //get the cluster for a user
+    spark.sparkContext.parallelize(finalClustersWithRatings).map(cluster => {
+      testEquidistanceBrodcasted.value.foreach(simlrty => {
+        cluster._2.foreach(sim => {
+          if((simlrty._1.equals(sim._2) && simlrty._2.equals(sim._3)) || (simlrty._1.equals(sim._3) && simlrty._2.equals(sim._2))){
+            
+          }
+        })
+      })
+    })
 
-//    println(sortedCenters)
 
 
     // Save and load model
-    clusters.save(spark.sparkContext, "data/KMeansExample/KMeansModel")
-    val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansExample/KMeansModel")
+//    clusters.save(spark.sparkContext, "data/KMeansExample/KMeansModel")
+//    val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansExample/KMeansModel")
 
 
   }
 
-  def calcualteSimilarityForUser (movies : Array[(Int, Int, Double)]): Unit = {
-    val similarities = ArrayBuffer((Int, Int, Double))
-    for (mov <- movies){
-        for(movies <- movies){
-
-        }
-    }
-  }
 
 }
