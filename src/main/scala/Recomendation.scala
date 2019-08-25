@@ -43,7 +43,7 @@ object Recomendation {
     import spark.implicits._
 
 //        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
-    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
+    val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       .map(parseRating)
       .toDF().cache()
     ratings.createOrReplaceTempView("ratings")
@@ -280,48 +280,71 @@ object Recomendation {
     //    println(clusters.clusterCenters)
     println(clusters.distanceMeasure)
     //    println(clusters.predict(tra))
-    clusters.clusterCenters.foreach(
-      center => {
-        println(center)
+    val scenters = ArrayBuffer[Double]()
+     clusters.clusterCenters.foreach( x => {
+       scenters.append(x.toArray(0))
+    })
+    val sortedCenters = scenters.sortWith(_ < _)
+    sortedCenters.foreach(println)
+
+    spark.sparkContext.parallelize(liknessCombinations).map(likness => {
+      var prevDistance : Double = -1
+      var prevCluster = sortedCenters(0)
+      var found = false
+      var count = 0
+      while(!found && count+1 <= sortedCenters.size){
+        val cluster = sortedCenters(count)
+        val newDistance = Math.sqrt(Math.pow(likness._3-cluster,2))
+        if(prevDistance != -1){
+          if(newDistance > prevDistance){
+            found=true
+          } else {
+            prevCluster = cluster
+            prevDistance = newDistance
+          }
+        }else {
+          prevCluster = cluster
+          prevDistance = newDistance
+        }
+        count += 1
       }
-    )
+//      val predictedDistance = sortedCenters.foreach(cluster => {
+//        val newDistance = Math.sqrt(Math.pow(likness._3-cluster,2))
+//        if(prevDistance != -1){
+//          if(newDistance > prevDistance){
+//            prevDistance
+//          } else {
+//            prevCluster = cluster
+//            prevDistance = newDistance
+//          }
+//        }else {
+//          prevCluster = cluster
+//          prevDistance = newDistance
+//        }
+//        prevCluster = cluster
+//      })
+//      if(predictedDistance == prevDistance)
+      (prevCluster,likness._1,likness._2,likness._3)
+    }).collect().groupBy(x => x._1).toArray.foreach(x => {
+      println(x._1)
+      x._2.foreach(println)
+    })
+
+
+
+
+//    println(sortedCenters)
+
 
     // Save and load model
     clusters.save(spark.sparkContext, "data/KMeansExample/KMeansModel")
     val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansExample/KMeansModel")
 
 
-    //old code
-//
-//    val firstrating = firstMoviesDistanceRdds.collect()(0)
-//    val liknessCombinations = ArrayBuffer[(Int,Int,Double)]()
-//    liknessCombinations.append(firstrating)
-//    var count = 0
-//    while (count < liknessCombinations.size){
-//      val currentRating = liknessCombinations(count)
-//      println(currentRating)
-////      val currentRatingBrodCasted = spark.sparkContext.broadcast(currentRating)
-//
-//      val allEquiDistRatings = sortedDistancesValuesRdds.filter(mov => mov._2.equals(currentRating._2) || mov._1.equals(currentRating._2))
-//      println(allEquiDistRatings.count())
-//      if(allEquiDistRatings.count() > 0){
-//        val finalDistance = allEquiDistRatings.reduce((x, y) => if(x._3 < y._3) x else y)
-////        allEquiDistRatings.unpersist()
-//        liknessCombinations.append(finalDistance)
-//        val finalDistanceRdd = spark.sparkContext.parallelize(Array(finalDistance))
-//          println("final Distance : "+finalDistance)
-//        sortedDistancesValuesRdds = sortedDistancesValuesRdds.subtract(finalDistanceRdd)
-////        println(sortedDistancesValuesRdds.count())
-////        finalDistanceRdd.unpersist()
-//      }
-//      println("likness size: "+liknessCombinations.size)
-//      println("Looop count: "+count)
-//      count +=1
-//
-//    }
-//
-//    sortedDistancesValuesRdds.collect().foreach(println)
+  }
 
+  def getTestMovieData(): Unit ={
+    
   }
 
 }
