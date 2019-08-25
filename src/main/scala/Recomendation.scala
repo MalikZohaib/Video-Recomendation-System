@@ -1,20 +1,14 @@
 import java.util.Optional
 
-import breeze.linalg.min
-import org.apache.spark
 import org.apache.spark.rdd.RDD
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.mllib.recommendation.MatrixFactorizationModel
-import org.apache.spark.mllib.recommendation.Rating
-import org.apache.spark.mllib.clustering.{KMeans, KMeansModel, VectorWithNorm}
+import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg
 import org.apache.spark.mllib.linalg.Vectors
-import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.{Dataset, Row, SparkSession}
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
-import org.apache.spark.util.random.XORShiftRandom
 
-import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.collection.mutable.{ArrayBuffer}
 
 
 object Recomendation {
@@ -29,32 +23,9 @@ object Recomendation {
     (row.getAs(0),row.getAs(1),row.getAs(2))
   }
 
-  def main(args: Array[String]): Unit = {
 
-    Logger.getLogger("org").setLevel(Level.OFF)
-    Logger.getLogger("akka").setLevel(Level.OFF)
-    //spark session
-    val spark = SparkSession
-      .builder
-      .appName("Video Recomendation system")
-      .config("spark.master", "local")
-      .getOrCreate()
-
-    import spark.implicits._
-
-//        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
-    val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
-      .map(parseRating)
-      .toDF().cache()
-    ratings.createOrReplaceTempView("ratings")
-    // Summarize ratings
-      val ratingTuples = ratings.map(showRating)
-
-    val brodcastRatings = spark.sparkContext.broadcast(ratingTuples.collect())
-
-    val movies = ratingTuples.map(_._2).distinct().sort($"value").cache()
+  def calculateMoviesDiff(moviesColl : Array[Int], ratingTuples: Dataset[(Int,Int,Float)]) : ArrayBuffer[(Int,Array[(Int,Int,Double)])] = {
     var moviesDiff = ArrayBuffer[(Int,Array[(Int, Int, Double)])]()
-    val moviesColl = movies.collect()
     for (mov <- moviesColl){
       val ratingsCalllected = ratingTuples.collect()
       val users = ratingTuples.filter(rat => rat._2.equals(mov))
@@ -66,12 +37,12 @@ object Recomendation {
         for (rat <- userRat){
           currentUserRating = rat
         }
-//        println(currentUserRating)
+        //        println(currentUserRating)
         val similarMovies = userMovies.rdd.map( rat => {
           var diff : (Int, Int, Double) = null
           if(!rat._2.equals(currentUserRating._2)){
             diff = (rat._1,rat._2,math.pow(currentUserRating._3-rat._3,2))
-//            diff : (Int, Int, Float)
+            //            diff : (Int, Int, Float)
           }
           if(diff != null)
             diff : (Int, Int, Double)
@@ -80,12 +51,11 @@ object Recomendation {
         })
         moviesDiff.append((currentUserRating._2,similarMovies.collect()))
       }
-
     }
+    return moviesDiff
+  }
 
-    val moviesDiffRdds = spark.sparkContext.parallelize(moviesDiff)
-//    println("movies size: "+moviesDiffRdds.count())
-    println("out of big loop")
+  def calculateEquiDistance (moviesColl : Array[Int], moviesDiffRdds : RDD[(Int, Array[(Int,Int,Double)])]): ArrayBuffer[Array[(Int,Int,Double)]] = {
     val equiDistanceValues = ArrayBuffer[Array[(Int,Int,Double)]]()
     moviesColl.foreach(movId => {
       val movieIdDiffs = moviesDiffRdds.filter(movRat => movRat._1.equals(movId))
@@ -107,11 +77,52 @@ object Recomendation {
           }
         }
       }
-//      combinedMovies.foreach(println)
-//      val combinedMoviesRdds = spark.sparkContext.parallelize(combinedMovies)
+      //      combinedMovies.foreach(println)
+      //      val combinedMoviesRdds = spark.sparkContext.parallelize(combinedMovies)
       equiDistanceValues.prepend(combinedMovies.toArray)
     })
+    return equiDistanceValues
+  }
 
+
+  def main(args: Array[String]): Unit = {
+
+    Logger.getLogger("org").setLevel(Level.OFF)
+    Logger.getLogger("akka").setLevel(Level.OFF)
+    //spark session
+    val spark = SparkSession
+      .builder
+      .appName("Video Recomendation system")
+      .config("spark.master", "local")
+      .getOrCreate()
+
+    import spark.implicits._
+
+//        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
+    val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
+      .map(parseRating)
+      .toDF().cache()
+    ratings.createOrReplaceTempView("ratings")
+    // Summarize ratings
+      val ratingTuples = ratings.map(showRating)
+
+    val brodcastRatings = spark.sparkContext.broadcast(ratingTuples.collect())
+
+    val movies = ratingTuples.map(_._2).distinct().sort($"value").cache()
+    val moviesColl = movies.collect()
+
+    //calculate Movies Diff
+    val moviesDiff = calculateMoviesDiff(moviesColl, ratingTuples)
+
+    val moviesDiffRdds = spark.sparkContext.parallelize(moviesDiff)
+
+
+    println("out of big loop")
+
+    //calculating  Equidistance values
+    val equiDistanceValues = calculateEquiDistance(moviesColl,moviesDiffRdds)
+
+    //getting first movie Rdd values
     val firstMovies = moviesColl(0)
     val equiDistanceValuesRdds = spark.sparkContext.parallelize(equiDistanceValues)
     val firstMovieBrodcasted = spark.sparkContext.broadcast(firstMovies)
@@ -128,6 +139,8 @@ object Recomendation {
         }
         currentDistance
     })
+
+    //sort equidistance Values
     var sortedDistancesValues = ArrayBuffer[(Int,Int,Double)]()
     for(distances <- equiDistanceValues){
       for(distance <- distances){
@@ -135,8 +148,6 @@ object Recomendation {
       }
     }
 
-
-//    sortedDistancesValues.foreach(println)
     var sortedDistancesValuesRdds = spark.sparkContext.parallelize(sortedDistancesValues)
     val groupedData = moviesColl.map(movId => {
       val group = sortedDistancesValuesRdds.filter(dist => dist._2.equals(movId) || dist._1.equals(movId))
@@ -159,52 +170,6 @@ object Recomendation {
       (movId, groupSorted.distinct)
     })
 
-//    groupedData.foreach(x => {
-//      println(x._1)
-//      x._2.foreach(println)
-//    })
-//    sortedDistancesValuesRdds.groupBy(distance => distance._1).collect().foreach(println)
-//    println("removing duplicates")
-//    var groupedDataRdds = spark.sparkContext.parallelize(groupedData)
-//    val cleanedGroupedData = ArrayBuffer[(Int,ArrayBuffer[(Int,Int,Double)])]()
-//    //remove duplications
-//    for(movieId <- moviesColl){
-////      println("Size before: "+groupedDataRdds.count())
-////      println("movieId : "+movieId)
-//      val group = groupedDataRdds.filter(distances => distances._1.equals(movieId)).first()
-//
-////      group._2.foreach(println)
-//      val newGroup = ArrayBuffer[(Int,Int, Double)]()
-////      println("group Sizze :"+ group._1)
-//      for(distance <- group._2){
-//        val group1 = groupedDataRdds.filter(distances => distances._1.equals(distance._2))
-//        var foundDuplicate = false
-//        if(group1.count() > 0){
-//          val duplicates = spark.sparkContext.parallelize(group1.first()._2).filter(dist => dist._2.equals(distance._1))
-//          if(duplicates.count() > 0){
-//            foundDuplicate = true
-//            //          println("duplicate : "+duplicate)
-//            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3+duplicates.first()._3)))
-//          }
-//        }
-//        if(!foundDuplicate){
-//          val group2 = spark.sparkContext.parallelize(cleanedGroupedData).filter(dist => dist._1.equals(distance._2)).first()
-//          val result = spark.sparkContext.parallelize(group2._2).filter(dist => dist._2.equals(distance._1)).first()
-////          println("result :"+result)
-//          if(result == null)
-//            newGroup.append((distance._1,distance._2,Math.sqrt(distance._3)))
-//        }
-//      }
-//
-//      groupedDataRdds = groupedDataRdds.filter(dist => !dist._1.equals(movieId))
-////      println("Size after: "+groupedDataRdds.count())
-//      cleanedGroupedData.append((movieId,newGroup))
-//    }
-//    cleanedGroupedData.foreach(x=> {
-//      println(x._1)
-//      x._2.foreach(println)
-//    })
-//
     println("calculating Likness")
     var cleanedGroupedDataRdds = spark.sparkContext.parallelize(groupedData)
     val firstrating = firstMoviesDistanceRdds.collect()(0)
@@ -330,7 +295,9 @@ object Recomendation {
       x._2.foreach(println)
     })
 
-
+    //testing user rating
+    val testUserRatings = Array((0,1,3.0),(0,2,4.0),(0,5,3.0))
+    calcualteSimilarityForUser(testUserRatings)
 
 
 //    println(sortedCenters)
@@ -343,8 +310,13 @@ object Recomendation {
 
   }
 
-  def getTestMovieData(): Unit ={
-    
+  def calcualteSimilarityForUser (movies : Array[(Int, Int, Double)]): Unit = {
+    val similarities = ArrayBuffer((Int, Int, Double))
+    for (mov <- movies){
+        for(movies <- movies){
+
+        }
+    }
   }
 
 }
