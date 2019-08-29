@@ -120,10 +120,10 @@ object Recomendation {
 
 
     //remove duplicates
-    println("removing duplicates")
-    moviesDiff.foreach(dist => {
-
-    })
+//    println("removing duplicates")
+//    moviesDiff.foreach(dist => {
+//
+//    })
 
     println("out of big loop")
 
