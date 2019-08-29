@@ -66,7 +66,7 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
     val WSSSE = clusters.computeCost(test)
     println(s"Within Set Sum of Squared Errors = $WSSSE")
 //    println(clusters.clusterCenters)
-    println(clusters.distanceMeasure)
+//    println(clusters.distanceMeasure)
 //    println(clusters.predict(tra))
     clusters.clusterCenters.foreach(
       center => {

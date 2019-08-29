@@ -37,6 +37,8 @@ object Recomendation {
         for (rat <- userRat){
           currentUserRating = rat
         }
+//        spark.sparkContext.parallelize(moviesDiff).filter(x => x._1.equals())
+//        spark.sparkContext.broadcast(moviesDiff)
         //        println(currentUserRating)
         val similarMovies = userMovies.rdd.map( rat => {
           var diff : (Int, Int, Double) = null
@@ -98,7 +100,7 @@ object Recomendation {
 
     import spark.implicits._
 
-//        val ratings = spark.read.textFile("gs://dataproc-aedcaf69-2bf5-4f15-9a1c-999989fa8805-asia-southeast1/sample_movielens_ratings.txt")
+//        val ratings = spark.read.textFile("gs://dataproc-b7dfa008-798a-4f86-84e0-e88ef2639a9e-asia/sample_movielens_ratings_small.txt")
     val ratings = spark.read.textFile("data/sample_movielens_ratings_small.txt")
       .map(parseRating)
       .toDF().cache()
@@ -116,6 +118,12 @@ object Recomendation {
 
     val moviesDiffRdds = spark.sparkContext.parallelize(moviesDiff)
 
+
+    //remove duplicates
+    println("removing duplicates")
+    moviesDiff.foreach(dist => {
+
+    })
 
     println("out of big loop")
 
@@ -274,10 +282,30 @@ object Recomendation {
         count += 1
       }
       (prevCluster,likness._1,likness._2,likness._3)
-    }).collect().groupBy(x => x._1).toArray
+    }).groupBy(x => x._1).map(x=> {
+        val distances = ArrayBuffer[(Int,Int,Double)]()
+        x._2.foreach(y => distances.append((y._2, y._3, y._4)))
+      (x._1, distances)
+    })
+
+    finalClustersWithRatings.collect().foreach(x => {
+        println(x._1)
+        x._2.foreach(println)
+    })
+
+    //get the no of movies
+    println("Enter the no of movies you watched")
+    val noOfMovies = scala.io.StdIn.readInt()
+    val testUserRatings = ArrayBuffer[(Int, Int, Float)]()
+    for(mov <- 0 until noOfMovies){
+      println("Enter Movie "+mov+" rating")
+      val rating = scala.io.StdIn.readInt()
+      testUserRatings.append((0,mov,rating.toFloat))
+    }
+val testMoviesColls = Array.range(1,noOfMovies)
     //testing user rating
-    val testUserRatings = Array((0,1,3.0F),(0,2,4.0F),(0,5,3.0F))
-    val testMoviesColls = Array(1,2,5)
+//    val testUserRatings = Array((0,1,3.0F),(0,2,4.0F),(0,5,3.0F),(0,62,5.0F))
+//    val testMoviesColls = Array.range(1,noOfMovies)
     val testMoviesDiff = calculateMoviesDiff(testMoviesColls,spark.sparkContext.parallelize(testUserRatings).toDS())
 
     val testMoviesDiffRdds = spark.sparkContext.parallelize(testMoviesDiff)
@@ -297,16 +325,39 @@ object Recomendation {
     val testEquidistanceBrodcasted = spark.sparkContext.broadcast(testFinalEquidistances)
 
     //get the cluster for a user
-    spark.sparkContext.parallelize(finalClustersWithRatings).map(cluster => {
+    val testUserCluster = finalClustersWithRatings.map(cluster => {
+      val equidistances = ArrayBuffer[(Int, Int, Double)]()
+      val clusterDistance = -1
       testEquidistanceBrodcasted.value.foreach(simlrty => {
         cluster._2.foreach(sim => {
-          if((simlrty._1.equals(sim._2) && simlrty._2.equals(sim._3)) || (simlrty._1.equals(sim._3) && simlrty._2.equals(sim._2))){
-            
+          if(simlrty._1.equals(sim._1) && simlrty._2.equals(sim._2)){
+            equidistances.append((sim._1,sim._2,Math.pow(sim._3 - simlrty._3,2)))
           }
         })
       })
-    })
+      var sum = 0.0
+      equidistances.foreach( distance => {
+        sum += distance._3
+      })
+      val finalDistance = Math.pow(Math.pow(cluster._1-Math.sqrt(sum),2),2)
 
+//      if(equidistances.nonEmpty)
+        (cluster._1,finalDistance)
+    }).reduce((x, y) => if(x._2 < y._2) x else y)
+
+//    println(testUserCluster._1)
+//    println(testUserCluster._2)
+
+    println("===Recomendations for user ====")
+    finalClustersWithRatings.filter(rating => rating._1.equals(testUserCluster._1)).foreach(recomendation => {
+      val recomendationsMovies = ArrayBuffer[Int]()
+      recomendation._2.foreach( x=> {
+        if(recomendationsMovies.indexOf(x._1) == -1){
+          recomendationsMovies.append(x._1)
+        }
+      })
+      recomendationsMovies.foreach(println)
+    })
 
 
     // Save and load model
