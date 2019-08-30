@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.mllib.clustering.KMeansModel","version":"2.0","k":10,"distanceMeasure":"euclidean","trainingCost":2993968.497420548}

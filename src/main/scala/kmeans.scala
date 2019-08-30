@@ -1,6 +1,7 @@
 import Recomendation.{parseRating, showRating}
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark
+import org.apache.spark.ml.evaluation.ClusteringEvaluator
 import org.apache.spark.ml.linalg.DenseVector
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -22,6 +23,12 @@ object kmeans {
     val fields = str.split("::")
     assert(fields.size == 4)
     (fields(0).toInt, fields(1).toInt, fields(2).toFloat)
+  }
+
+  def parseMovies(str: String): Tuple3[Int, String, String] = {
+    val fields = str.split(",")
+//    assert(fields.size == 3 || fields.size == 4)
+    (fields(0).toInt, fields(1), fields(2))
   }
 
   def main(args: Array[String]): Unit = {
@@ -77,8 +84,8 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       println(x._1)
       x._2.foreach(println)
     })
-
-    val denseVectors = spark.sparkContext.parallelize(completeRatings).map(ratings => {
+    val completeRatingsRdds = spark.sparkContext.parallelize(completeRatings)
+    val denseVectors = completeRatingsRdds.map(ratings => {
       val ratingArray = ArrayBuffer[Double]()
       ratings._2.foreach(rating=> {
         ratingArray.append(rating._3)
@@ -90,21 +97,98 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       x.toArray.foreach(println)
     })
 
-        // Cluster the data into two classes using KMeans
-        val numClusters = 10
-        val numIterations = 40
-        val clusters = KMeans.train(denseVectors, numClusters, numIterations)
-        // Evaluate clustering by computing Within Set Sum of Squared Errors
-        val WSSSE = clusters.computeCost(denseVectors)
-        println(s"Within Set Sum of Squared Errors = $WSSSE")
-    //    println(clusters.clusterCenters)
-    //    println(clusters.distanceMeasure)
-    //    println(clusters.predict(tra))
-        clusters.clusterCenters.foreach(
-          center => {
-            println(center)
+    // Cluster the data into two classes using KMeans
+    val numClusters = 10
+    val numIterations = 40
+    val clusters = KMeans.train(denseVectors, numClusters, numIterations)
+    // Evaluate clustering by computing Within Set Sum of Squared Errors
+    val WSSSE = clusters.computeCost(denseVectors)
+    println(s"Within Set Sum of Squared Errors = $WSSSE")
+//    println(clusters.clusterCenters)
+//    println(clusters.distanceMeasure)
+//    println(clusters.predict(tra))
+    clusters.clusterCenters.foreach(
+      center => {
+        println(center)
+      }
+    )
+
+    val clustersCentersBroadCasted = spark.sparkContext.broadcast(clusters.clusterCenters)
+
+    val usersClusters = completeRatingsRdds.map( user => {
+      val equiDistances = ArrayBuffer[(Int, Double)]()
+
+      var count = 0
+      clustersCentersBroadCasted.value.foreach(cluster => {
+        var diff : Double= 0.0
+          for(i <- user._2.indices){
+            diff += Math.pow(cluster(i) - user._2(i)._3,2)
           }
-        )
+        equiDistances.append((count,Math.sqrt(diff)))
+        count+=1
+      })
+      val minmumDistance = equiDistances.reduce((x, y) => if(x._2 < y._2) x else y)
+      (user._1,minmumDistance._1,minmumDistance._2,user._2)
+    })
+
+    usersClusters.foreach(println)
+
+    //test data generation
+    println("=====Enter the No of movies you have watched=====")
+    val noOfMovies = scala.io.StdIn.readInt()
+    val r = scala.util.Random
+    val randomMoviesIDs = for (i <- 1 to noOfMovies) yield r.nextInt(moviesColl.length)
+    val moviesCsv = spark.read.textFile("data/movies.csv").map(parseMovies).cache()
+    val testMoviesTitles = ArrayBuffer[(Int, String,String)]()
+    randomMoviesIDs.foreach(movieID => {
+      val firstValues = moviesCsv.filter(x => x._1.equals(movieID))
+      if(firstValues.count() > 0)
+        testMoviesTitles.append(firstValues.first())
+    })
+
+    //getting ratings from user
+    println("Enter Ratings from 1-5 for movies")
+    val userMoviesRatings = ArrayBuffer[(Int,String,Int)]()
+    testMoviesTitles.foreach(movies => {
+      println("Enter rating for Movies '"+movies._2+"'")
+      val rating = scala.io.StdIn.readInt()
+      userMoviesRatings.append((movies._1,movies._2,rating))
+    })
+
+
+    //creating user vector
+    val userMoviesRatingsBroadCasted = spark.sparkContext.broadcast(userMoviesRatings)
+    val testRatings = spark.sparkContext.parallelize(moviesColl).map(movieID => {
+      val rating = userMoviesRatingsBroadCasted.value.filter( x => x._1.equals(movieID))
+      if(rating.nonEmpty){
+        rating(0)._3
+      }else{
+        0.0
+      }
+    }).collect()
+
+    //calculate the recomendations for user
+    //calculate the closest cluster for user
+    val denseVector = Vectors.dense(testRatings)
+    //get the predicted cluster index for the current user
+    val predictedClusterIndex = clusters.predict(denseVector)
+
+    //calculate Person correlation
+    val clusterUsers = usersClusters.filter(cluter => cluter._2.equals(predictedClusterIndex))
+    val personCorrelation = clusterUsers.map(user => {
+      user._4.foreach(rating => {
+        
+      })
+    })
+//    val testMovieIds = ArrayBuffer[Int]()
+//    for(mov <- 0 until noOfMovies){
+//
+//      println("Enter Movie "+mov+" rating")
+//      val rating = scala.io.StdIn.readInt()
+//      testUserRatings.append((0,mov,rating.toFloat))
+//    }
+//    val moviesCsv = spark.read.textFile("data/movies.csv").map(parseMovies).cache()
+//    moviesCsv.collect().foreach(println)
 
 //    users.foreach(user => {
 //      println(user)
@@ -149,8 +233,8 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
 //    clusters.predict(parsedTestData).foreach(println)
 //
 //    // Save and load model
-//    clusters.save(spark.sparkContext, "target/org/apache/spark/KMeansExample/KMeansModel")
-//    val sameModel = KMeansModel.load(spark.sparkContext, "target/org/apache/spark/KMeansExample/KMeansModel")
+//    clusters.save(spark.sparkContext, "data/KMeansModel")
+//    val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansModel")
 //
 
   }
