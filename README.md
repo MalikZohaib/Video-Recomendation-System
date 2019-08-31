@@ -1,2 +1,2 @@
 # Video-Recomendation-System
-This is an implementation of video recomendation system based on k-map and ant colony. This is implemented in scala using spark library.
+This is an implementation of Movies recommendation system using collaborative filtering and k-means using Appache Spark in Scala.
