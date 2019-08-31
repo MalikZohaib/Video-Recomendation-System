@@ -4,39 +4,46 @@
     <list default="true" id="18bbf456-f53b-43f5-af24-c0c3394379a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/modules/video recomendation system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/video recomendation system.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/data/._SUCCESS.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/data/.part-00000-c6df22da-836d-42c3-ba45-2384825af008-c000.snappy.parquet.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/data/_SUCCESS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/data/part-00000-c6df22da-836d-42c3-ba45-2384825af008-c000.snappy.parquet" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/metadata/._SUCCESS.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/metadata/.part-00000.crc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/metadata/_SUCCESS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/KMeansExample/KMeansModel/metadata/part-00000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/movies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ratings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/ratings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8e6ea2897de2732d862d$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8e6ea2897de2732d862d.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8e6ea2897de2732d862d.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/copyResources/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/copyResources/$global/streams/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/kmeans.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/kmeans.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/A$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/A$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/A.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/A.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$10$$anonfun$apply$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$10$$anonfun$apply$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11$$anonfun$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11$$anonfun$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11$$anonfun$apply$6$$anonfun$apply$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11$$anonfun$apply$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$2$$anonfun$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$2$$anonfun$15.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$6$$anonfun$apply$1$$anonfun$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$6$$anonfun$apply$1$$anonfun$apply$mcVI$sp$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$6$$anonfun$apply$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1$$anonfun$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1$$anonfun$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1$$anonfun$apply$mcVI$sp$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1$$anonfun$apply$mcVI$sp$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8$$anonfun$apply$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$1$$anonfun$apply$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$1$$anonfun$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$1$$anonfun$14.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$2$$anonfun$apply$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$2$$anonfun$apply$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$3$$anonfun$apply$5.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$anonfun$main$8.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator4$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator5$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator5$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator9$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$$typecreator9$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/classes/kmeans.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/video-recomendation-system$sources/0.1/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/video-recomendation-system$sources/0.1/resolved.xml.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/video-recomendation-system$sources/0.1/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/default/video-recomendation-system$sources/0.1/resolved.xml.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-compile-internal.xml" afterDir="false" />
@@ -50,7 +57,13 @@
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-scala-tool.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-test-internal.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/resolution-cache/reports/default-video-recomendation-system$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.11/video-recomendation-system_2.11-0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.11/video-recomendation-system_2.11-0.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.11.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.11.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/out" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -95,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Recomendation.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="297" column="4" selection-start-line="297" selection-start-column="4" selection-end-line="303" selection-end-column="5" />
+            <state relative-caret-position="220">
+              <caret line="273" column="18" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
                 <marker date="1567058960104" expanded="true" signature="13698:13745" ph="..." />
@@ -108,8 +121,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/kmeans.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="179" column="8" selection-start-line="179" selection-start-column="8" selection-end-line="179" selection-end-column="8" />
+            <state relative-caret-position="324">
+              <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -128,15 +141,13 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/ratings.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1512251" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings_small.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
+            <state relative-caret-position="2100">
               <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
             </state>
           </provider>
@@ -145,7 +156,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/movies.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
+            <state relative-caret-position="645">
               <caret line="43" column="3" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="3" />
             </state>
           </provider>
@@ -154,7 +165,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.ivy2/cache/org.apache.spark/spark-mllib_2.11/srcs/spark-mllib_2.11-2.4.3-sources.jar!/org/apache/spark/mllib/clustering/KMeans.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
+            <state relative-caret-position="4335">
               <caret line="316" column="7" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="7" />
             </state>
           </provider>
@@ -163,7 +174,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
+            <state relative-caret-position="22500">
               <caret line="1500" column="6" selection-start-line="1500" selection-start-column="4" selection-end-line="1500" selection-end-column="6" />
             </state>
           </provider>
@@ -181,10 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>para</find>
-      <find>filter</find>
-      <find>tupl</find>
-      <find>remainingDistances</find>
       <find>sq</find>
       <find>49</find>
       <find>99</find>
@@ -210,7 +217,11 @@
       <find>group</find>
       <find>movies</find>
       <find>,</find>
+      <find>clustersCentersBroadCasted</find>
+      <find>movieSizeBroadcasted</find>
+      <find>broadcast</find>
       <find>reduce</find>
+      <find>println</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -257,8 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -305,6 +314,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -415,7 +426,7 @@
     <frame x="0" y="0" width="1366" height="720" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49759614" visible="true" weight="0.20075758" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49759614" visible="true" weight="0.20378788" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -423,14 +434,14 @@
       <window_info id="Favorites" order="5" sideWeight="0.50240386" side_tool="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288364" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2647555" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2647555" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39966273" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3288364" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Flutter Performance" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="12" weight="0.3291592" />
@@ -565,61 +576,10 @@
     <entry file="file://$PROJECT_DIR$/data/KMeansModel/data/._SUCCESS.crc">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Similarity.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.apache.spark/spark-mllib_2.11/jars/spark-mllib_2.11-2.4.3.jar!/org/apache/spark/mllib/clustering/KMeansModel.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.apache.spark/spark-mllib_2.11/srcs/spark-mllib_2.11-2.4.3-sources.jar!/org/apache/spark/mllib/clustering/KMeans.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="316" column="7" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/movies.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="43" column="3" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="1500" column="6" selection-start-line="1500" selection-start-column="4" selection-end-line="1500" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings_small.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ratings.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1512251" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Recomendation.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="297" column="4" selection-start-line="297" selection-start-column="4" selection-end-line="303" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <marker date="1567058960104" expanded="true" signature="13698:13745" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -630,10 +590,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Similarity.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings_small.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="140" column="20" selection-start-line="140" selection-start-column="20" selection-end-line="140" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.apache.spark/spark-mllib_2.11/srcs/spark-mllib_2.11-2.4.3-sources.jar!/org/apache/spark/mllib/clustering/KMeans.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4335">
+          <caret line="316" column="7" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/sample_movielens_ratings.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22500">
+          <caret line="1500" column="6" selection-start-line="1500" selection-start-column="4" selection-end-line="1500" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Recomendation.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="273" column="18" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <marker date="1567058960104" expanded="true" signature="13698:13745" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ratings.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/movies.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="3" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/kmeans.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="179" column="8" selection-start-line="179" selection-start-column="8" selection-end-line="179" selection-end-column="8" />
+        <state relative-caret-position="324">
+          <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>

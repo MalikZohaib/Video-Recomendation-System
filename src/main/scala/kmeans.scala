@@ -20,7 +20,7 @@ import scala.util.Try
 object kmeans {
 
   def parseRating(str: String): Tuple3[Int, Int, Float] = {
-    val fields = str.split("::")
+    val fields = str.split(",")
     assert(fields.size == 4)
     (fields(0).toInt, fields(1).toInt, fields(2).toFloat)
   }
@@ -47,7 +47,8 @@ object kmeans {
 //    val df1 = spark.read.format("com.databricks.spark.csv").option("header", true).load(ratigsFile)
 //
 //    df1.show(100)
-val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
+//val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
+val ratings = spark.read.textFile("data/ratings.csv")
   .map(parseRating)
   .toDF().cache()
     ratings.createOrReplaceTempView("ratings")
@@ -80,10 +81,10 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       }
       (ratings._1,newRating)
     }).collect()
-    completeRatings.foreach(x=> {
-      println(x._1)
-      x._2.foreach(println)
-    })
+//    completeRatings.foreach(x=> {
+//      println(x._1)
+//      x._2.foreach(println)
+//    })
     val completeRatingsRdds = spark.sparkContext.parallelize(completeRatings)
     val denseVectors = completeRatingsRdds.map(ratings => {
       val ratingArray = ArrayBuffer[Double]()
@@ -93,10 +94,10 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       val vector = Vectors.dense(ratingArray.toArray)
       vector
     })
-    denseVectors.foreach(x=>{
-      x.toArray.foreach(println)
-    })
-
+//    denseVectors.foreach(x=>{
+//      x.toArray.foreach(println)
+//    })
+    println("calculating K-means")
     // Cluster the data into two classes using KMeans
     val numClusters = 10
     val numIterations = 40
@@ -130,10 +131,11 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       val minmumDistance = equiDistances.reduce((x, y) => if(x._2 < y._2) x else y)
       (user._1,minmumDistance._1,minmumDistance._2,user._2)
     })
-
+    clustersCentersBroadCasted.unpersist()
     usersClusters.foreach(println)
 
     //test data generation
+    //this is test data and very small amount of data so paralissiam is not neccessary
     println("=====Enter the No of movies you have watched=====")
     val noOfMovies = scala.io.StdIn.readInt()
     val r = scala.util.Random
@@ -167,6 +169,8 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
       }
     }).collect()
 
+    userMoviesRatingsBroadCasted.unpersist()
+
     //calculate the recomendations for user
     //calculate the closest cluster for user
     val denseVector = Vectors.dense(testRatings)
@@ -174,68 +178,63 @@ val ratings = spark.read.textFile("data/sample_movielens_ratings.txt")
     val predictedClusterIndex = clusters.predict(denseVector)
 
     //calculate Person correlation
+    val currentUserRatingsBroadcasted = spark.sparkContext.broadcast(userMoviesRatings)
     val clusterUsers = usersClusters.filter(cluter => cluter._2.equals(predictedClusterIndex))
-    val personCorrelation = clusterUsers.map(user => {
-      user._4.foreach(rating => {
-        
+    val closedUsers = clusterUsers.map(user => {
+      val nonZeroRatings = user._4.filter( x=> x._3 != 0.0)
+      val comparisonMovies = ArrayBuffer[(Int,Int,Float)]()
+      val targetMovies = ArrayBuffer[(Int,String,Int)]()
+      var sum1 = 0.0
+      var sum2 = 0.0
+      currentUserRatingsBroadcasted.value.foreach(rating => {
+        val userRating = nonZeroRatings.filter(x => x._2.equals(rating._1))
+        if(userRating.nonEmpty){
+          if(!userRating(0)._3.equals(0.0)){
+            comparisonMovies.append(userRating(0))
+            targetMovies.append(rating)
+            sum2 += userRating(0)._3
+            sum1 += rating._3
+          }
+        }
       })
-    })
-//    val testMovieIds = ArrayBuffer[Int]()
-//    for(mov <- 0 until noOfMovies){
-//
-//      println("Enter Movie "+mov+" rating")
-//      val rating = scala.io.StdIn.readInt()
-//      testUserRatings.append((0,mov,rating.toFloat))
-//    }
-//    val moviesCsv = spark.read.textFile("data/movies.csv").map(parseMovies).cache()
-//    moviesCsv.collect().foreach(println)
 
-//    users.foreach(user => {
-//      println(user)
-//      val userMovies = ratingTuples.filter( rating => rating._1 == user).sort($"_2")
-//      val movieIdAccum = spark.sparkContext.accumulator(0, "movie Id accumulator")
-//      userMovies.map(movie => {
-//
-//      })
-//    })
+      //calculating mean
+      var meanTarget = 0.0
+      var meanComp = 0.0
+      if(targetMovies.nonEmpty && comparisonMovies.nonEmpty){
+        meanTarget = sum1/targetMovies.size
+        meanComp = sum2/comparisonMovies.size
+      }
+      //calculate differences
+      var diffSum = 0.0
+      var diffSumMoviesTarget = 0.0
+      var diffSumMoviesComp = 0.0
+      for (i <- targetMovies.indices) {
+        diffSum += (targetMovies(i)._3 - meanTarget) * (comparisonMovies(i)._3-meanComp)
+        diffSumMoviesTarget += Math.pow(targetMovies(i)._3-meanTarget,2)
+        diffSumMoviesComp += Math.pow(comparisonMovies(i)._3-meanComp,2)
+      }
 
+      val petersonSimilarity = diffSum/(Math.sqrt(diffSumMoviesTarget)*Math.sqrt(diffSumMoviesComp))
 
-//    users.foreach(println)
-//
-//  val test =  training.rdd.map(r => {
-//   val vector = Vectors.dense(r._1.toDouble, r._2.toDouble,r._3.toDouble)
-//
-//    vector : linalg.Vector
-// })
-//
-//    // Cluster the data into two classes using KMeans
-//    val numClusters = 10
-//    val numIterations = 40
-//    val clusters = KMeans.train(test, numClusters, numIterations)
-//    // Evaluate clustering by computing Within Set Sum of Squared Errors
-//    val WSSSE = clusters.computeCost(test)
-//    println(s"Within Set Sum of Squared Errors = $WSSSE")
-////    println(clusters.clusterCenters)
-////    println(clusters.distanceMeasure)
-////    println(clusters.predict(tra))
-//    clusters.clusterCenters.foreach(
-//      center => {
-//        println(center)
-//      }
-//    )
-//
-//    val parsedTestData =  testData.rdd.map(r => {
-//      val vector = Vectors.dense(r._1.toDouble, r._2.toDouble,r._3.toDouble)
-//
-//      vector : linalg.Vector
-//    })
-//
-//    clusters.predict(parsedTestData).foreach(println)
-//
-//    // Save and load model
-//    clusters.save(spark.sparkContext, "data/KMeansModel")
-//    val sameModel = KMeansModel.load(spark.sparkContext, "data/KMeansModel")
-//
+      (user._1,user._2,user._3,petersonSimilarity, user._4)
+    }).filter(x => !x._4.isNaN).sortBy(x => x._4,ascending = false)
+//    closedUsers.foreach(println)
+    println("=== users similarities ===")
+    if(closedUsers.count() > 0){
+      val closeedUser = closedUsers.reduce((x, y) => if(x._4 > y._4) x else y)
+      println("Closed User : "+closeedUser._1)
+      println("Peterson Similarity : "+closeedUser._4)
+      //    println(closeedUser)
+      closeedUser._5.foreach(x => {
+        val ratings = userMoviesRatings.filter(y => y._1==x._2)
+        if(ratings.isEmpty){
+          val movies = moviesCsv.filter(y => y._1.equals(x._2))
+          if(movies.count() > 0)
+            println(movies.first())
+        }
+      })
+    }
 
   }
 }
