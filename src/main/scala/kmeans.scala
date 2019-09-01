@@ -221,13 +221,15 @@ val ratings = spark.read.textFile("data/ratings.csv")
     }).filter(x => !x._4.isNaN).sortBy(x => x._4,ascending = false)
 //    closedUsers.foreach(println)
     println("=== users similarities ===")
+
     if(closedUsers.count() > 0){
       val closeedUser = closedUsers.reduce((x, y) => if(x._4 > y._4) x else y)
       println("Closed User : "+closeedUser._1)
       println("Peterson Similarity : "+closeedUser._4)
       //    println(closeedUser)
+
       closeedUser._5.foreach(x => {
-        val ratings = userMoviesRatings.filter(y => y._1==x._2)
+        val ratings = userMoviesRatings.filter(y => y._1==x._2 && y._3 > 0.0)
         if(ratings.isEmpty){
           val movies = moviesCsv.filter(y => y._1.equals(x._2))
           if(movies.count() > 0)
